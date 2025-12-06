@@ -1,0 +1,214 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OOP - Tag - Being BE</title>
+        <link>https://kmsdevdata-sketch.github.io/tags/oop/</link>
+        <description>OOP - Tag - Being BE</description>
+        <generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kms.dev.data@gmail.com (Being Be)</managingEditor>
+            <webMaster>kms.dev.data@gmail.com (Being Be)</webMaster><lastBuildDate>Mon, 01 Dec 2025 14:16:00 &#43;0900</lastBuildDate><atom:link href="https://kmsdevdata-sketch.github.io/tags/oop/" rel="self" type="application/rss+xml" /><item>
+    <title>Java 동등성과 동일성에 대하여</title>
+    <link>https://kmsdevdata-sketch.github.io/posts/java-equality-identity-equals-hashcode/</link>
+    <pubDate>Mon, 01 Dec 2025 14:16:00 &#43;0900</pubDate>
+    <author>kms.dev.data@gmail.com (Being Be)</author>
+    <guid>https://kmsdevdata-sketch.github.io/posts/java-equality-identity-equals-hashcode/</guid>
+    <description><![CDATA[<p>학습을 이어나가면서 지속적으로 듣게되는 <strong>동등성</strong>과 <strong>동일성</strong>. 대략적으로 알고있는 방향은:</p>
+<ul>
+<li><strong>동일성</strong>은 메모리 주소값이 같다</li>
+<li><strong>동등성</strong>은 변수가 참조하고 있는 객체의 주소가 다르더라도 값이 같다</li>
+</ul>
+<p>정도로 이해하고있다. 틀린 내용은 없지만 포스팅을 하며 완전히 소화시켜보고 싶다.</p>
+<p>아래 내용은 **[객체지향의 사실과 오해 - 조영호]**에서 참고한 내용이다.</p>
+<h2 id="근본적인-차이점">근본적인 차이점</h2>
+<p>동등성과 동일성의 각 특징을 고려해보면:</p>
+<ul>
+<li>상태를 이용하여 구분하는지</li>
+<li>식별자를 이용하여 구분하는지</li>
+</ul>
+<p>위에 두가지가 기존의 설명보다 조금더 근본적인 대답이라는 생각이든다.</p>
+<hr>
+<h2 id="상태">상태</h2>
+<p>위에서 말하는 상태를 이용하여 구분하는것에서 <strong>상태</strong>란 정확히 무엇을 말하는걸까?</p>
+<p>여기서 상태는 객체의 특성을 나타내는 **&ldquo;값&rdquo;**으로 사용이된다.</p>
+<p>홍길동 이라는 객체의 특성을 나타낼때:</p>
+<p></p>
+<ul>
+<li>키: 180cm</li>
+<li>몸무게: 80kg</li>
+<li>생일: 2000/01/01</li>
+</ul>
+<p>이처럼 키와 몸무게는 각자 객체는 아니지만 홍길동 객체의 특성을 나타내는 값으로 사용이되며, 현재 홍길동 객체의 <strong>상태</strong>를 설명하여준다.</p>
+<p></p>
+<p>상태를 이용하기에 홍길동 객체의 과거 행동에 의한 이력을 모르더라도, 현재 홍길동 객체를 간편하게 설명가능하다.</p>
+<p><strong>정리하자면 객체의 프로퍼티 값의 조합을 상태라고 볼 수 있겠다.</strong></p>
+<hr>
+<h2 id="식별자">식별자</h2>
+<p>객체는 식별가능한 경계를 가진 사물을 의미하는데, 식별이 가능하다는것은 각 객체간의 구분가능한 특징이 있다는것인데, 해당 구분가능한 특징을 <strong>식별자</strong>라고 부른다.</p>
+<p>위의 문장이 <strong>값과 객체의 차이점</strong>을 말해준다고 볼수있는데:</p>
+<ul>
+<li>객체는 <strong>식별자</strong>가 있다</li>
+<li>값은 <strong>식별자를 가지지 않는다</strong></li>
+</ul>
+<hr>
+<h2 id="가변과-불변">가변과 불변</h2>
+<ul>
+<li><strong>값</strong>은 <strong>불변 상태</strong>를 가진다</li>
+<li><strong>객체</strong>는 <strong>가변 상태</strong>를 가진다</li>
+</ul>
+<p>180이라는 값은 변경되지 않지만, 홍길동 객체의 키는 시간이 흐름에 따라 185cm가 될 수 있으며, 이는 해당 객체의 상태가 변경되는 <strong>가변 상태</strong>를 가진다고 할 수 있다.</p>
+<hr>
+<h2 id="그럼-무엇으로-구분할-수-있을까">그럼 무엇으로 구분할 수 있을까</h2>
+<p>위의 내용들에 따라 우리는 값이 같은지 객체가 같은지를 고려할때:</p>
+<ul>
+<li><strong>값</strong>은 <strong>상태를 이용</strong>하여 구분</li>
+<li><strong>객체</strong>는 <strong>식별자를 이용</strong>하여 구분</li>
+</ul>
+<p>홍길동 객체와 김철수 객체를 예로 들때:</p>
+<ul>
+<li>홍길동 키: 180cm</li>
+<li>김철수 키: 180cm</li>
+</ul>
+<p>여기서 키가 <strong>동일하다</strong>라고 규정지을 수 있지만, 홍길동과 김철수의 키가 같다고 해서 홍길동과 김철수가 같다고는 할 수 없다.</p>
+<p></p>
+<p>이처럼:</p>
+<ul>
+<li>두 객체의 키, 몸무게, 생일 등등 <strong>특정 값을 비교</strong>할때는 <strong>상태를 이용</strong>하여 비교 → <strong>동등성</strong></li>
+<li><strong>두 개의 객체가 같은지</strong>를 비교할때는 <strong>식별자를 이용</strong>하여 비교 → <strong>동일성</strong></li>
+</ul>
+<hr>
+<h2 id="그럼-이걸-왜-알아야하나">그럼 이걸 왜 알아야하나</h2>
+<p>객체지향 프로그래밍을 접하면서 가장 많이 들은 이야기: <strong>역할과 책임</strong></p>
+<p>각 객체의 역할을 나누며 해당 역할에 맞는 명확한 책임을 갖고있어야한다 라는 말을 많이 들었다.</p>
+<p>위에서는 비유적 예시이고 실제 프로그래밍을 할때는 <code>Integer</code>, <code>String</code> 클래스로 정의하게 되며, <strong>값 객체</strong>로써 모델링 하다보니 혼란스러울때가 많이 있는거 같다.</p>
+<p>하지만 동등성과 동일성을 정확히 파악해나가면(필자는 부단히 학습중), <strong>역할 기반의 명확한 객체 모델링</strong>이 가능해진다.</p>
+<p><strong>Entity(식별자를 지닌 객체)와 값 객체의 차이점을 정확히 규정할 수 있다:</strong></p>
+<ul>
+<li><strong>엔티티</strong>: 식별자를 중요히 여기며 <strong>동일성</strong>과 연관</li>
+<li><strong>값 객체</strong>: 값/상태를 중요히 여기며 <strong>동등성</strong>과 연관</li>
+</ul>
+<p>동일성의 문제인 <strong>&ldquo;부수 효과&rdquo;</strong>(두 변수가 하나의 객체를 공유하고 있을 때, 한 변수를 통해 객체의 상태를 변경하면 다른 변수에도 그 영향이 전달)도 예측가능한 코드로써 방지가능한데, 동등성을 중요하게 다루는 <strong>값 객체</strong>를 설계할 때 <strong>불변성</strong>을 채택하게 되며, 여러곳에서 공유되어도 부수효과 없어져 안정성이 높아지고 코드를 예측하기 쉬워진다.</p>
+<hr>
+<h2 id="동등성과-동일성-메서드">동등성과 동일성 메서드</h2>
+<p>그러면 동일성과 동등성 검사 메서드를 알아보자.</p>
+<h3 id="동일성-검사--연산자">동일성 검사: == 연산자</h3>
+<p>위에서 말했듯 동일성 검사는 값/상태가 아닌 <strong>정확히 같은 객체를 가르키는지</strong>, 즉 <strong>메모리 상에서 완전히 같은 객체를 가르키고 있는지</strong>를 검사한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&#34;Being&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&#34;Be&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">s2</span><span class="p">);</span><span class="w"> </span><span class="c1">// false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">s3</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span><span class="w">
+</span></span></span></code></pre></div><h3 id="동등성-검사-equals-메서드">동등성 검사: equals() 메서드</h3>
+<p>동등성 검사는 <strong>값/상태가 동일한지</strong> 비교한다. 즉 메모리 주소는 다르더라도 객체가 담고있는 **내용(필드 값)**이 같은지를 비교한다.</p>
+<p>대부분의 경우 우리가 원하는 것은 메모리 주소 비교가 아닌 <strong>논리적 동등성의 비교</strong>이다.</p>
+<h3 id="equals의-내부-동작">equals()의 내부 동작</h3>
+<p><code>equals()</code>는 최상위 부모인 <code>Object</code> 클래스에 정의되어 있으며, 기본적으로는 내부적으로 <code>==</code> 연산자를 사용한다(동일성 비교).</p>
+<p>하지만 <code>String</code>, <code>Integer</code>와 같이 표준 라이브러리의 많은 클래스들이 <code>equals()</code> 메서드를 <strong>재정의</strong>하여 필드 값을 비교하도록 구현해둔 상태이다.</p>
+<p>그래서 <strong>직접 만든 클래스</strong>의 객체를 값/상태를 기준으로 비교하려면 <strong>반드시 equals() 메서드를 재정의</strong>해야한다.</p>
+<p><strong>주의:</strong> <code>equals()</code>를 재정의하게될 경우 일반적으로 <code>hashCode()</code> 메서드도 함께 재정의 해야하는데, 이유는 <code>HashMap</code>, <code>HashSet</code> 등 <strong>해시 기반 컬렉션</strong>이 정상적으로 작동하도록 보장하기 위함이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">s2</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 사용자 정의 클래스</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">MyObject</span><span class="w"> </span><span class="n">o1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyObject</span><span class="p">(</span><span class="n">10</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">MyObject</span><span class="w"> </span><span class="n">o2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyObject</span><span class="p">(</span><span class="n">10</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">o1</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">o2</span><span class="p">));</span><span class="w"> </span><span class="c1">// false (재정의 전)</span><span class="w">
+</span></span></span></code></pre></div><p>필자는 별생각없이 사용하였는데 만약 다음과 같은경우:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MyClass</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyClass</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyClass</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MyClass</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyClass</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">m1</span><span class="p">.</span><span class="na">name</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">m2</span><span class="p">.</span><span class="na">name</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>별생각없이 <code>equals</code>를 동등성 검사로 인지후에 진행을 하였다.</p>
+<p>동등성 검사가 진행된것은 맞지만 <code>m1</code>, <code>m2</code>의 필드값 <code>name</code>이 <code>String</code>으로 지정이 되었기에, <code>String</code> 내부적으로 재정의된 <code>equals</code>를 사용하여 동등성 검사가 가능한 경우였다. <del>(나만바보)</del></p>
+<hr>
+<h2 id="객체지향-설계에서-중요한-이유">객체지향 설계에서 중요한 이유</h2>
+<p>위에는 너무 뻔하디 뻔한 예시였다. 실제 설계를 할때 혼란을 야기할 수 있는 상황을 한번 재현해보려한다.</p>
+<h3 id="영속성과-식별자-기반-비교">영속성과 식별자 기반 비교</h3>
+<p><strong>상황 설정:</strong> JPA/Hibernate 엔티티</p>
+<p>웹 애플리케이션에서 <code>User</code> 객체를 데이터베이스에 저장/조회 한다고 가정</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">User</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w"> </span><span class="c1">// 데이터베이스 식별자 (DB Primary Key)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 생성자 및 Getter/Setter 생략</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 해당 클래스 equals()와 hashCode()를 재정의하지 않았다 가정</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 1. 새 사용자 생성 후 저장 (id = null 상태)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">User</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span><span class="s">&#34;test@example.com&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// u1.id = null</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 2. DB에 저장 후 ID 할당 (id = 1L)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">userRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">u1</span><span class="p">);</span><span class="w"> </span><span class="c1">// DB 작업 후, u1.id = 1L</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 3. DB에서 사용자 조회 (같은 이메일로 다시 조회)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">User</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">findByEmail</span><span class="p">(</span><span class="s">&#34;test@example.com&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// u2.id = 1L</span><span class="w">
+</span></span></span></code></pre></div><p><strong>뭐가 헷갈리는데?</strong></p>
+<p>코드를 보았을때 <code>u1</code>, <code>u2</code>는 데이터베이스상에서 완전히 같은 사용자이니 논리적으로는 동등해야 할것만 같다.</p>
+<ul>
+<li>
+<p><strong>동일성 검사</strong> <code>u1 == u2</code></p>
+<ul>
+<li>결과: <code>false</code></li>
+<li>이유: <code>u2</code>는 DB에서 새로 조회되어 메모리에 로드된 객체여서 메모리 주소가 다름</li>
+</ul>
+</li>
+<li>
+<p><strong>동등성 검사(재정의x)</strong> <code>u1.equals(u2)</code></p>
+<ul>
+<li>결과: <code>false</code></li>
+<li>이유: <code>User</code> 클래스에 <code>equals</code>를 재정의 하지않아 기본 구현인 동일성검사가 수행된다</li>
+</ul>
+</li>
+</ul>
+<p>다음과 같은 상황에 <code>u1</code>, <code>u2</code>를 논리적으로 같다고 판단하려면 <code>User</code> 클래스에서 <code>id</code> 값을 기준으로 <code>equals</code>와 <code>hashCode</code>를 재정의 해야한다!</p>
+<h3 id="복합-객체의-상태-기반-비교">복합 객체의 상태 기반 비교</h3>
+<p><strong>상황 설정:</strong> 주소를 나타내는 <code>Address</code> 클래스가 있다고 가정하고 주소는 필드 값들이 모두 같으면 논리적으로 같은 것으로 간주한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Address</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">street</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Address</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">street</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">city</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">street</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">street</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 이 클래스도 equals()와 hashCode()를 재정의x</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Address</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Address</span><span class="p">(</span><span class="s">&#34;Seoul&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Gangnam-ro&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Address</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Address</span><span class="p">(</span><span class="s">&#34;Seoul&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Gangnam-ro&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 값은 같지만 새로 생성됨</span><span class="w">
+</span></span></span></code></pre></div><p><strong>뭐가 문제?</strong></p>
+<p>해당 객체를 <code>HashSet</code>에 추가한다고 가정시:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">address</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">a1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">address</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">a2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">address</span><span class="p">.</span><span class="na">size</span><span class="p">());</span><span class="w"> </span><span class="c1">// 2</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li><strong>기대 결과:</strong> 주소의 값이 같으므로 1개만 저장되어야함</li>
+<li><strong>실제 결과:</strong> 2
+<ul>
+<li>이유는 <code>Address</code>에 <code>equals</code>가 재정의 되지 않아서 <code>HashSet</code>은 내부적으로 기본 <code>equals</code>를 사용하여 동일성 검사가 되어 <code>false</code>를 반환함</li>
+<li>컬렉션은 두 객체를 내용이 같더라도 서로 다른 객체로 간주하고 모두 저장</li>
+</ul>
+</li>
+</ul>
+<p>위에 예시가 모든 경우를 대변하지도 않고 위에서 말한 기대결과와 반대인 값을 당연시 여길수도 있다고 생각하지만, 간단한 예시가 아닌 실제 복잡한 코드속에서는 놓칠수있고 간과할수있는 부분이라 판단된다.</p>
+<hr>
+<h2 id="마무리">마무리</h2>
+<p>동등성과 동일성의 개념을 명확히 이해하고, 상황에 맞게 <code>equals()</code>와 <code>hashCode()</code>를 적절히 재정의하는 것이 견고한 객체지향 설계의 핵심이다.</p>]]></description>
+</item>
+</channel>
+</rss>

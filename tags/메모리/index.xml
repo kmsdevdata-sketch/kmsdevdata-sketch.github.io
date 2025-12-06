@@ -1,0 +1,170 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>메모리 - Tag - Being BE</title>
+        <link>https://kmsdevdata-sketch.github.io/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC/</link>
+        <description>메모리 - Tag - Being BE</description>
+        <generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kms.dev.data@gmail.com (Being Be)</managingEditor>
+            <webMaster>kms.dev.data@gmail.com (Being Be)</webMaster><lastBuildDate>Sat, 06 Dec 2025 14:00:00 &#43;0900</lastBuildDate><atom:link href="https://kmsdevdata-sketch.github.io/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC/" rel="self" type="application/rss+xml" /><item>
+    <title>JVM 시리즈 - Runtime Data Area</title>
+    <link>https://kmsdevdata-sketch.github.io/posts/java-jvm-runtimedataarea/</link>
+    <pubDate>Sat, 06 Dec 2025 14:00:00 &#43;0900</pubDate>
+    <author>kms.dev.data@gmail.com (Being Be)</author>
+    <guid>https://kmsdevdata-sketch.github.io/posts/java-jvm-runtimedataarea/</guid>
+    <description><![CDATA[<p>이번 포스팅에서는 JVM에 대해서 그중에서도 런타임 데이터 영역을 자세히 들춰보려 한다.</p>
+<p>이번 주제는 Java에 대해서 포스팅을 계속 해나가려면 필수적인 선행지식이라 생각이 들어 포스팅을 해나가면서 나 또한 지식을 소화해봐야겠다.</p>
+<h2 id="jvm이-뭘까">JVM이 뭘까?</h2>
+<p>Runtime Data Area를 다루기 전에 JVM에 대한 개략적인 이해가 필요하다.</p>
+<p>JVM이란 Java Virtual Machine의 줄임말로 <strong>OS에 종속받지 않고 CPU가 JAVA를 실행할 수 있게 해주는 가상컴퓨터</strong>를 뜻한다. 해당 문장만 보면 플랫폼 독립성의 문제만 해결해주는 것 같지만 그 외에도 다양한 역할을 하는데:</p>
+<ul>
+<li>위에 나온 플랫폼 독립성 확립</li>
+<li>메모리/스레드 관리 자동화</li>
+<li>실행 최적화</li>
+<li>생태계 확장 (ex. Kotlin, Scala, Groovy 등)</li>
+</ul>
+<p>위의 이유들 때문에 <del>자바공화국</del> 백엔드 시장의 표준이 되었다고 봐도 무방하다.</p>
+<hr>
+<h2 id="os에-종속받지-않는다">OS에 종속받지 않는다?</h2>
+<p>OS에 종속받지 않는다는 것이 정확히 무슨 이야기이며 어떻게 가능한 걸까?</p>
+<h3 id="다른-언어들의-경우">다른 언어들의 경우</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">소스 코드 → 컴파일러 → 기계어(OS/CPU 맞춤) → 실행 파일(exe, ELF 등)
+</span></span></code></pre></div><p>위의 흐름대로 진행되며 컴파일된 실행파일이 특정 OS에 맞추어져 있다:</p>
+<ul>
+<li>Windows용 .exe</li>
+<li>Linux용 ELF</li>
+<li>ARM CPU용 vs. x86 CPU용도 서로 다름</li>
+</ul>
+<p>위와 같기 때문에 OS + CPU 조합마다 별도로 빌드해야 하는데</p>
+<h3 id="java의-경우">Java의 경우</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">소스코드 → Java Compiler → 바이트코드(.class) → JVM → 실행
+</span></span></code></pre></div><p>위에서 핵심은 <strong>JVM이 OS/CPU 차이를 대신 처리한다</strong>는 것이다. 운영체제와 맞물리는 층이 JVM이지 Java 코드가 아니라는 것.</p>
+<p></p>
+<p>위의 사진과 같이 코드 작성 후에 빌드/컴파일을 하게 되면 .class 파일이 생성되는 것을 알 수 있다.</p>
+<p>해당 .class 파일은 OS/CPU가 직접 실행할 수 있는 기계어가 아니라 **JVM이 이해하는 중간 언어(바이트코드)**이며, JVM이 이 중간 언어를 기반으로 최적화 및 기계어 변환을 수행한다.</p>
+<p>정리하자면:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">개발자:   public class Hello { ... }
+</span></span><span class="line"><span class="cl">                ↓
+</span></span><span class="line"><span class="cl">javac:   Hello.class   ← 바이트코드 생성 
+</span></span><span class="line"><span class="cl">                ↓
+</span></span><span class="line"><span class="cl">JVM:     바이트코드 해석 + 최적화 + 기계어 변환
+</span></span><span class="line"><span class="cl">                ↓
+</span></span><span class="line"><span class="cl">CPU:     실제 명령 실행
+</span></span></code></pre></div><p>개발자가 소스코드를 빌드/컴파일하게 되면 .class 파일(바이트코드)가 생성되고, 기존의 OS/CPU 대신에 JVM이 바이트코드를 해석하고 최적화된 기계어로 바꿔 실행하는 엔진 역할을 한다.</p>
+<hr>
+<h2 id="jvm-전체-흐름도">JVM 전체 흐름도</h2>
+<p></p>
+<p>JVM의 전체 흐름은 다음과 같이 이루어진다:</p>
+<ul>
+<li>먼저 <strong>클래스 로더</strong>가 .class 파일을 불러와서 검증하고 초기화한 후 메모리에 적재한다</li>
+<li>그 다음 <strong>런타임 데이터 영역</strong>이 활성화되면서 프로그램의 데이터와 상태를 관리한다
+<ul>
+<li>해당 공간에서는 메소드 정보, 객체, 스레드 스택 등이 저장되며 &lsquo;저장 공간&rsquo; 역할을 한다</li>
+</ul>
+</li>
+<li>마지막으로 <strong>실행 엔진</strong>이 바이트코드를 해석하거나 컴파일해서 실제 CPU 명령어를 변환하고 실행한다
+<ul>
+<li>해당 과정에서 인터프리터나 JIT 컴파일러가 동작하며 프로그램이 &lsquo;실행 단계&rsquo;로 넘어간다</li>
+</ul>
+</li>
+</ul>
+<p>이번 포스팅에서는 런타임 데이터 영역을 알아보기 위한 것이니 대략적인 흐름만 이해하자.</p>
+<hr>
+<h2 id="runtime-data-area">Runtime Data Area</h2>
+<p></p>
+<p>런타임 데이터 영역은 위와 같이 구성되어 있는데, 총 다섯 가지 영역으로 구성된다:</p>
+<ul>
+<li>메서드 영역 (Method Area)</li>
+<li>힙 영역 (Heap Area)</li>
+<li>스택 영역 (Stack Area)</li>
+<li>PC 레지스터 (Program Counter Register)</li>
+<li>네이티브 메서드 스택 (Native Method Stack)</li>
+</ul>
+<hr>
+<h2 id="각-영역별-역할">각 영역별 역할</h2>
+<h3 id="메서드-영역-method-area">메서드 영역 (Method Area)</h3>
+<p>JVM이 시작될 때 생성되어 클래스 로더에 의해 로드된 클래스 정보를 저장한다. 각 클래스의 바이트 코드, 상수, 필드, 메서드 등 클래스 관련 정보가 저장된다.</p>
+<h3 id="힙-영역-heap-area---jvm-메모리-중-가장-큰-공간">힙 영역 (Heap Area) - JVM 메모리 중 가장 큰 공간</h3>
+<p>런타임에 결정되는 참조 자료형과 new 연산자를 통해 생성된 객체 인스턴스가 힙 영역에 저장된다. 객체가 더 이상 사용되지 않으면 GC가 청소한다.</p>
+<h3 id="스택-영역-stack-area">스택 영역 (Stack Area)</h3>
+<p>지역 변수, 매개변수, 메서드 리턴 값, 연산에 사용되는 임시 데이터가 저장되는 영역이다. 각 데이터들은 프레임 구조로 저장되며 메서드 종료 시에 삭제된다.</p>
+<h3 id="pc-레지스터-program-counter-register">PC 레지스터 (Program Counter Register)</h3>
+<p>OS의 PC 레지스터와 유사한 역할을 하지만 JVM에서 관리하는 영역으로, 스레드가 메서드를 수행할 때 멀티 스레드 환경을 보장하기 위해서 각 스레드가 실행 중인 JVM 명령의 주소를 저장/관리/추적이 가능하게 만들어준다.</p>
+<p><strong>JVM 명령어 주소를 왜 알아야 하는데?</strong></p>
+<p>PC 레지스터는 책갈피 역할을 한다고 봐야 하는데 스레드가 CPU를 번갈아 사용해도 돌아왔을 때 어디서부터 다시 실행해야 할지 알아야 하기 때문이다.</p>
+<h3 id="네이티브-메서드-스택-native-method-stack">네이티브 메서드 스택 (Native Method Stack)</h3>
+<p>자바가 아닌 다른 언어(C, C++ 등)로 작성된 코드를 실행할 때 사용하는 메모리 영역이다. PC 레지스터에서는 native한(자바가 아닌 다른 언어) 명령어를 수행하면 기록 불가하기 때문에 해당 영역으로 넘어온다.</p>
+<hr>
+<h2 id="공유-영역-vs-개별-영역">공유 영역 vs 개별 영역</h2>
+<p>Runtime Data Area를 효율적으로 이해하기 위해서는 &ldquo;누가 이 메모리를 공유하는가?&ldquo;를 기준점으로 나누어보면 좋다:</p>
+<ul>
+<li>모든 스레드가 공유하는 영역</li>
+<li>스레드별로 생성되는 영역</li>
+</ul>
+<p>두 가지로 나누어볼 수 있는데:</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>구분</strong></th>
+          <th><strong>영역 이름</strong></th>
+          <th><strong>저장 내용</strong></th>
+          <th><strong>생명 주기</strong></th>
+          <th><strong>GC 대상</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>공유 영역</strong><!-- raw HTML omitted -->(모든 스레드)</td>
+          <td><strong>Method Area</strong></td>
+          <td>클래스 코드, Static 변수</td>
+          <td>JVM 시작 ~ 종료</td>
+          <td>X (거의 안 함)</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td><strong>Heap Area</strong></td>
+          <td><strong>객체 인스턴스 (핵심)</strong></td>
+          <td>JVM 시작 ~ 종료</td>
+          <td><strong>O (주요 대상)</strong></td>
+      </tr>
+      <tr>
+          <td><strong>개별 영역</strong><!-- raw HTML omitted -->(스레드 당 하나)</td>
+          <td><strong>Stack</strong></td>
+          <td>지역 변수, 메서드 흐름</td>
+          <td>스레드 시작 ~ 종료</td>
+          <td>X</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td><strong>PC Register</strong></td>
+          <td>현재 실행 주소</td>
+          <td>스레드 시작 ~ 종료</td>
+          <td>X</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td><strong>Native Stack</strong></td>
+          <td>C/C++ 실행 정보</td>
+          <td>스레드 시작 ~ 종료</td>
+          <td>X</td>
+      </tr>
+  </tbody>
+</table>
+<p>여기서 포인트는:</p>
+<ul>
+<li><strong>Stack 영역이 꽉 찼을 때</strong>: <code>StackOverflowError</code></li>
+<li><strong>Heap 영역이 꽉 찼을 때</strong>: <code>OutOfMemoryError</code></li>
+</ul>
+<hr>
+<h2 id="이거-알면-뭐가-좋은데">이거 알면 뭐가 좋은데?</h2>
+<p>추후에 포스팅에서 다루게 되겠지만 위의 사항에 대해 정확히 알게 되면:</p>
+<ul>
+<li><code>GC</code></li>
+<li><code>메모리 누수</code></li>
+<li><code>스레드</code></li>
+<li><code>OutOfMemoryError</code></li>
+<li><code>성능 튜닝</code></li>
+<li><code>Spring DI 컨테이너 동작</code></li>
+</ul>
+<p>모두 Runtime Data Area와 직결되기 때문에 알아두었을 때 왜 그런 일이 발생하게 되는지에 대한 이해도가 훨씬 올라갈 수 있다.</p>]]></description>
+</item>
+</channel>
+</rss>
