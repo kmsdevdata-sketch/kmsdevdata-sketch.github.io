@@ -37,30 +37,31 @@
             <div><span class="room-number">07</span><h1>Deployment &amp; Operations</h1></div>
             <div class="room-content">
               <div class="diagram">
-                <div class="visual-placeholder compact">
-                  <div>
-                    <strong>CI/CD Diagram</strong>
-                    <span>GitHub Actions, Gradle, Docker buildx, ECR, ECS, ALB Health Check 이미지 자리</span>
-                  </div>
+                <a href="../../assets/oneasset/ci-cd.png" target="_blank" rel="noreferrer">
+                  <img src="../../assets/oneasset/ci-cd.png" alt="OneAsset CI/CD 다이어그램" />
+                </a>
+              </div>
+              <div class="content-grid">
+                <div class="content-block">
+                  <h2>Pipeline</h2>
+                  <p>
+                    main 브랜치에 변경이 반영되면 GitHub Actions가 테스트와 bootJar 빌드를
+                    수행하고, Docker 이미지를 빌드해 ECR에 push합니다. 이후 기존 ECS Task
+                    Definition을 기반으로 새 revision을 등록하고 ECS Service를 업데이트합니다.
+                  </p>
+                </div>
+                <div class="content-block">
+                  <h2>Runtime</h2>
+                  <p>
+                    운영 환경에서는 ALB health check를 통해 정상 task만 트래픽을 받도록
+                    구성했습니다. ECS Task는 private subnet에 배치하고, 외부 진입은 Cloudflare와
+                    ALB를 통해서만 받도록 정리했습니다.
+                  </p>
                 </div>
               </div>
-              <div class="media-grid">
-                <div class="media-card"><div class="visual-placeholder compact"><div><strong>ECS Service</strong><span>running 화면</span></div></div></div>
-                <div class="media-card"><div class="visual-placeholder compact"><div><strong>ALB Target Group</strong><span>healthy 화면</span></div></div></div>
-                <div class="media-card"><div class="visual-placeholder compact"><div><strong>GitHub Actions</strong><span>성공 화면</span></div></div></div>
-                <div class="media-card"><div class="visual-placeholder compact"><div><strong>CloudWatch</strong><span>대시보드 일부</span></div></div></div>
-              </div>
-              <div class="content-block">
-                <p>
-                  main 브랜치에 변경이 반영되면 GitHub Actions가 테스트와 bootJar 빌드를
-                  수행하고, Docker 이미지를 linux/amd64 플랫폼으로 빌드해 ECR에 push합니다.
-                  이후 기존 ECS Task Definition을 기반으로 새 revision을 등록하고 ECS Service를
-                  업데이트합니다.
-                </p>
-              </div>
               <p class="quote">
-                초기 arm64 이미지 문제는 Docker buildx에서 linux/amd64 플랫폼을 명시해
-                해결했습니다.
+                private subnet의 ECS Task가 Cognito metadata와 AWS public endpoint에 접근할 수
+                있도록 NAT Gateway를 구성했습니다.
               </p>
             </div>
           </section>

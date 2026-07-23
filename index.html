@@ -268,11 +268,31 @@
       .project-row,
       .experience-row,
       .stack-row {
+        position: relative;
         display: grid;
         grid-template-columns: 220px minmax(0, 1fr);
         gap: 48px;
         border-bottom: 1px solid var(--line);
         padding: 28px 0;
+      }
+
+      .project-row {
+        cursor: pointer;
+      }
+
+      .project-row:hover {
+        background: linear-gradient(90deg, transparent, var(--surface));
+      }
+
+      .project-card-link {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+      }
+
+      .project-card-link:focus-visible {
+        outline: 3px solid rgba(31, 111, 235, 0.45);
+        outline-offset: -3px;
       }
 
       .row-meta {
@@ -305,6 +325,8 @@
         flex-wrap: wrap;
         justify-content: flex-end;
         gap: 8px;
+        position: relative;
+        z-index: 2;
       }
 
       .row-main p {
@@ -360,23 +382,39 @@
         color: var(--muted);
       }
 
+      .project-link,
       .detail-link {
         flex: 0 0 auto;
         display: inline-flex;
         min-height: 34px;
         align-items: center;
-        border: 1px solid var(--line);
-        border-radius: 999px;
         padding: 0 12px;
-        color: var(--muted);
         font-size: 13px;
         font-weight: 760;
       }
 
-      .detail-link:hover {
+      .project-link {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--muted);
+        background: #ffffff;
+      }
+
+      .project-link:hover {
         border-color: var(--line-strong);
         color: var(--text);
         background: var(--surface);
+      }
+
+      .detail-link {
+        border: 1px solid var(--text);
+        border-radius: 6px;
+        background: var(--text);
+        color: #ffffff;
+      }
+
+      .detail-link:hover {
+        background: #2a2a2d;
       }
 
       .stack-row h3 {
@@ -650,13 +688,18 @@
 
           <div class="project-list">
             <article class="project-row">
+              <a
+                class="project-card-link"
+                href="projects/oneasset.html"
+                aria-label="OneAsset 상세 페이지로 이동"
+              ></a>
               <div class="row-meta">Personal Project</div>
               <div class="row-main">
                 <div class="project-title-bar">
                   <h3>OneAsset</h3>
                   <div class="project-title-actions" aria-label="OneAsset 프로젝트 링크">
                     <a
-                      class="detail-link"
+                      class="project-link"
                       href="https://www.oneasset.tech/"
                       target="_blank"
                       rel="noreferrer"
@@ -664,7 +707,7 @@
                       서비스
                     </a>
                     <a
-                      class="detail-link"
+                      class="project-link"
                       href="https://github.com/kmsdevdata-sketch/oneasset-api.git"
                       target="_blank"
                       rel="noreferrer"
@@ -675,8 +718,9 @@
                   </div>
                 </div>
                 <p>
-                  AWS 기반 미디어 저장 플랫폼입니다. API Key, Cognito, S3, CloudFront,
-                  ECS 배포를 중심으로 백엔드 구조를 설계했습니다.
+                  개발자용 클라우드 에셋 딜리버리 API입니다. API Key 기반 업로드,
+                  private S3 저장, SQS/Lambda 비동기 변환, CloudFront delivery 흐름을
+                  구성했습니다.
                 </p>
                 <div class="tags">
                   <span class="tag">Java</span>
@@ -691,13 +735,18 @@
             </article>
 
             <article class="project-row">
+              <a
+                class="project-card-link"
+                href="projects/pium.html"
+                aria-label="Pium 상세 페이지로 이동"
+              ></a>
               <div class="row-meta">Personal Project</div>
               <div class="row-main">
                 <div class="project-title-bar">
                   <h3>Pium</h3>
                   <div class="project-title-actions" aria-label="Pium 프로젝트 링크">
                     <a
-                      class="detail-link"
+                      class="project-link"
                       href="https://www.pium.app/"
                       target="_blank"
                       rel="noreferrer"
@@ -705,7 +754,7 @@
                       서비스
                     </a>
                     <a
-                      class="detail-link"
+                      class="project-link"
                       href="https://github.com/kmsdevdata-sketch/pium-api.git"
                       target="_blank"
                       rel="noreferrer"

@@ -39,8 +39,6 @@
               <table class="deployment-table">
                 <thead><tr><th>Problem</th><th>Cause</th><th>Fix</th></tr></thead>
                 <tbody>
-                  <tr><td>ECS task image pull 실패</td><td>Mac에서 arm64 이미지 빌드, ECS는 linux/amd64</td><td>Docker buildx platform 명시</td></tr>
-                  <tr><td>ECS 배포 불안정</td><td>t3.micro 메모리 부족</td><td>t3.small로 변경</td></tr>
                   <tr><td>Cognito metadata timeout</td><td>private subnet task의 outbound 경로 없음</td><td>NAT Gateway + private route table 구성</td></tr>
                   <tr><td>Cloudflare 경유 20초 지연</td><td>ALB public subnet과 ECS private subnet 역할 혼선</td><td>ALB public subnet, ECS private subnet으로 분리</td></tr>
                   <tr><td>ALB 503</td><td>ECS task AZ가 ALB enabled AZ와 불일치</td><td>ALB/ECS subnet AZ 정렬</td></tr>
@@ -49,14 +47,12 @@
                 </tbody>
               </table>
               <p class="lede">
-                가장 크게 배운 점은 클라우드 리소스를 단순히 생성하는 것보다, 각 리소스가
-                어느 네트워크 경로와 보안 경계 안에서 동작하는지 이해하는 것이 중요하다는
-                점이었습니다.
+                OneAsset에서 가장 중요한 트러블슈팅은 배포 명령 자체보다 네트워크 경계와
+                런타임 위치를 바로잡는 일이었습니다.
               </p>
               <p class="quote">
-                ECS awsvpc 모드에서는 task가 자체 ENI를 가지기 때문에, RDS 보안그룹이나 ALB
-                Target Group을 구성할 때 task의 네트워크 위치와 보안그룹을 기준으로 판단해야
-                했습니다.
+                특히 private subnet의 ECS Task outbound 경로, ALB와 ECS subnet/AZ 정렬,
+                Cloudflare와 ALB 사이의 요청 흐름을 분리해서 보면서 장애 원인을 좁혔습니다.
               </p>
             </div>
           </section>

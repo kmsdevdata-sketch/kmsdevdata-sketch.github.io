@@ -37,12 +37,9 @@
             <div><span class="room-number">06</span><h1>Data Model</h1></div>
             <div class="room-content">
               <div class="diagram">
-                <div class="visual-placeholder compact">
-                  <div>
-                    <strong>Core ERD</strong>
-                    <span>Users, Projects, API Keys, Assets, Asset Variants, Processing Logs 이미지 자리</span>
-                  </div>
-                </div>
+                <a href="../../assets/oneasset/erd.png" target="_blank" rel="noreferrer">
+                  <img src="../../assets/oneasset/erd.png" alt="OneAsset 핵심 ERD" />
+                </a>
               </div>
               <div class="content-grid">
                 <div class="content-block">
@@ -63,8 +60,9 @@
                 </div>
               </div>
               <p class="quote">
-                ApiKey는 raw key를 그대로 저장하지 않고 hash로 저장하여 DB 유출 시에도 실제
-                key가 노출되지 않도록 설계했습니다.
+                ApiKey는 raw key를 그대로 저장하지 않고, salt와 서버 측 secret을 반영한
+                해시 값과 식별용 prefix만 저장하여 DB 유출 시에도 실제 key가 노출되지 않도록
+                설계했습니다.
               </p>
             </div>
           </section>

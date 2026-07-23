@@ -37,29 +37,105 @@
             <div><span class="room-number">08</span><h1>Load Test &amp; Observability</h1></div>
             <div class="room-content">
               <div class="media-grid">
-                <div class="media-card"><div class="visual-placeholder compact"><div><strong>k6 Result</strong><span>터미널 캡처</span></div></div></div>
-                <div class="media-card"><div class="visual-placeholder compact"><div><strong>CloudWatch</strong><span>Dashboard 캡처</span></div></div></div>
-                <div class="media-card"><div class="visual-placeholder compact"><div><strong>SQS Backlog</strong><span>backlog 상승 구간</span></div></div></div>
-                <div class="media-card"><div class="visual-placeholder compact"><div><strong>Lambda / DLQ</strong><span>invocations, DLQ 0</span></div></div></div>
+                <figure class="media-card">
+                  <a href="../../assets/oneasset/read-stress-01.png" target="_blank" rel="noreferrer">
+                    <img src="../../assets/oneasset/read-stress-01.png" alt="OneAsset read stress CloudWatch 캡처 1" />
+                  </a>
+                  <figcaption class="media-caption">Read Stress / CloudWatch 01</figcaption>
+                </figure>
+                <figure class="media-card">
+                  <a href="../../assets/oneasset/read-stress-02.png" target="_blank" rel="noreferrer">
+                    <img src="../../assets/oneasset/read-stress-02.png" alt="OneAsset read stress CloudWatch 캡처 2" />
+                  </a>
+                  <figcaption class="media-caption">Read Stress / CloudWatch 02</figcaption>
+                </figure>
+                <figure class="media-card">
+                  <a href="../../assets/oneasset/upload-burst-01.png" target="_blank" rel="noreferrer">
+                    <img src="../../assets/oneasset/upload-burst-01.png" alt="OneAsset upload burst CloudWatch 캡처 1" />
+                  </a>
+                  <figcaption class="media-caption">Upload Burst / CloudWatch 01</figcaption>
+                </figure>
+                <figure class="media-card">
+                  <a href="../../assets/oneasset/upload-burst-02.png" target="_blank" rel="noreferrer">
+                    <img src="../../assets/oneasset/upload-burst-02.png" alt="OneAsset upload burst CloudWatch 캡처 2" />
+                  </a>
+                  <figcaption class="media-caption">Upload Burst / CloudWatch 02</figcaption>
+                </figure>
               </div>
               <p class="lede">
                 부하 테스트는 API read path와 upload async pipeline 두 가지 경로로 나눠서
-                진행했습니다.
+                진행했습니다. 1-4번 테스트는 배포 환경, 인증 헤더, read API, 소량 업로드
+                파이프라인을 확인하는 기준선으로 사용했고, 5번과 6번을 주요 성능/구조 검증
+                결과로 정리했습니다.
               </p>
               <div class="content-grid">
                 <div class="content-block">
                   <h2>Read Stress</h2>
-                  <p>Total requests 34,708, failure rate 0%, check success rate 100%, p95 latency 414.77ms, p99 latency 723.49ms.</p>
+                  <p>
+                    Cloudflare, ALB, ECS on EC2, Spring Boot, RDS로 이어지는 API read path를
+                    검증했습니다. 동일 프로젝트의 에셋 목록조회 요청을 단계적으로 증가시켜
+                    API 계층의 안정성을 확인했습니다.
+                  </p>
                 </div>
                 <div class="content-block">
                   <h2>Upload Async</h2>
-                  <p>300 uploads에서는 Upload API p95 1.08s, READY p95 15.03s를 확인했고, 1000 uploads에서는 Upload API p95 4.49s, READY p95 30.10s를 확인했습니다.</p>
+                  <p>
+                    Spring upload, S3 original object, RDS PROCESSING, SQS, Lambda, S3 variant,
+                    Spring callback, RDS READY로 이어지는 비동기 파이프라인을 검증했습니다.
+                  </p>
                 </div>
               </div>
+              <table class="deployment-table">
+                <thead>
+                  <tr>
+                    <th>Scenario</th>
+                    <th>Core Result</th>
+                    <th>Observation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>01 Smoke</td>
+                    <td>46 requests, failure rate 0%, p95 237ms</td>
+                    <td>배포 상태와 API key 인증을 확인했습니다.</td>
+                  </tr>
+                  <tr>
+                    <td>02 Read Baseline</td>
+                    <td>1,676 requests, failure rate 0%, p95 169ms</td>
+                    <td>읽기 API 기준선을 확인했습니다.</td>
+                  </tr>
+                  <tr>
+                    <td>03 Upload Pipeline</td>
+                    <td>20 uploads, READY success 100%, READY p95 4.22s</td>
+                    <td>소량 업로드 E2E 상태 전이를 확인했습니다.</td>
+                  </tr>
+                  <tr>
+                    <td>04 Small Spike</td>
+                    <td>2,105 requests, failure rate 0%, p95 192ms</td>
+                    <td>50 VU 목록조회 spike를 확인했습니다.</td>
+                  </tr>
+                  <tr>
+                    <td>05 API Stress</td>
+                    <td>34,708 requests, failure rate 0%, p95 414.77ms, p99 723.49ms</td>
+                    <td>API read path는 실패 없이 안정적으로 동작했습니다.</td>
+                  </tr>
+                  <tr>
+                    <td>06 Upload Burst / 300</td>
+                    <td>300 uploads, upload success 100%, READY p95 15.03s, DLQ 0</td>
+                    <td>SQS backlog peak 약 275, Lambda invocations 300으로 후처리 분리를 확인했습니다.</td>
+                  </tr>
+                  <tr>
+                    <td>06 Upload Burst / 1000</td>
+                    <td>1,000 uploads, upload success 100%, API p95 4.49s, READY p95 30.10s</td>
+                    <td>고부하에서 실패는 없었지만 READY 전환 지연 한계가 드러났습니다.</td>
+                  </tr>
+                </tbody>
+              </table>
               <p class="quote">
                 업로드 burst가 커질수록 READY 상태까지 걸리는 시간이 증가했고, API 서버보다
                 SQS/Lambda 기반 후처리 파이프라인이 사용자 체감 완료 시간에 영향을 준다는
-                점을 확인했습니다.
+                점을 확인했습니다. 이 결과는 단순히 성능이 좋다는 의미보다, 시스템에서
+                병목이 발생할 수 있는 위치를 관찰했다는 점에 의미가 있습니다.
               </p>
             </div>
           </section>
