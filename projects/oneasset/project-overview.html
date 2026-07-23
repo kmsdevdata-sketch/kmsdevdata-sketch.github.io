@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="OneAsset Project Overview 섹션입니다." />
+    <meta name="theme-color" content="#ffffff" />
+    <title>OneAsset | Project Overview</title>
+    <link rel="stylesheet" href="section.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="wrap nav" aria-label="OneAsset 섹션 내비게이션">
+        <a class="brand" href="../../index.html">Kim Minseo</a>
+        <a class="nav-link" href="../oneasset.html">All Sections</a>
+      </nav>
+    </header>
+    <main class="gallery-room">
+      <div class="room-main">
+        <div class="wrap room-layout">
+          <aside class="room-index" aria-label="OneAsset 섹션 목록">
+            <span class="project-name">OneAsset</span>
+            <div class="room-list">
+              <a href="project-overview.html" aria-current="page"><span>01</span>Project Overview</a>
+              <a href="problem-goal.html"><span>02</span>Problem &amp; Goal</a>
+              <a href="aws-architecture.html"><span>03</span>AWS Architecture</a>
+              <a href="backend-architecture.html"><span>04</span>Backend Architecture</a>
+              <a href="asset-processing-flow.html"><span>05</span>Asset Processing Flow</a>
+              <a href="data-model.html"><span>06</span>Data Model</a>
+              <a href="deployment-operations.html"><span>07</span>Deployment &amp; Operations</a>
+              <a href="load-test-observability.html"><span>08</span>Load Test &amp; Observability</a>
+              <a href="troubleshooting.html"><span>09</span>Troubleshooting</a>
+              <a href="next-steps.html"><span>10</span>Next Steps</a>
+            </div>
+          </aside>
+          <section class="room-stage">
+            <div>
+              <span class="room-number">01</span>
+              <h1>Project Overview</h1>
+            </div>
+            <div class="room-content">
+              <div class="diagram">
+                <div class="visual-placeholder compact">
+                  <div>
+                    <strong>Dashboard / Asset Detail Screenshot</strong>
+                    <span>웹 대시보드 캡처, 에셋 목록/상세 화면 또는 API 흐름 이미지 자리</span>
+                  </div>
+                </div>
+              </div>
+              <p class="lede">
+                OneAsset은 외부 애플리케이션이 API Key를 통해 이미지를 업로드하고, 원본
+                파일과 변환된 WebP variant를 안정적으로 사용할 수 있게 만든 클라우드 기반
+                에셋 관리 API입니다.
+              </p>
+              <div class="content-block">
+                <p>
+                  이미지 파일은 private S3 bucket에 저장하고, 업로드 이후의 이미지 변환
+                  작업은 SQS와 Lambda로 분리했습니다. 클라이언트는 업로드 응답으로 받은
+                  key, storageKey, deliveryUrl, status를 기준으로 에셋을 사용하며, 최종 파일
+                  접근은 CloudFront를 통해 이루어집니다.
+                </p>
+              </div>
+              <div class="resource-links" aria-label="OneAsset 외부 링크">
+                <a class="resource-link" href="https://www.oneasset.tech/" target="_blank" rel="noreferrer">
+                  <span>Web</span>
+                  <strong>OneAsset 웹 링크</strong>
+                </a>
+                <a
+                  class="resource-link"
+                  href="https://github.com/kmsdevdata-sketch/oneasset-api.git"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>GitHub</span>
+                  <strong>oneasset-api.git</strong>
+                </a>
+              </div>
+              <div class="resource-links" aria-label="OneAsset 핵심 키워드">
+                <div class="resource-link"><span>API</span><strong>Spring Boot API</strong></div>
+                <div class="resource-link"><span>Auth</span><strong>API Key 기반 Developer API</strong></div>
+                <div class="resource-link"><span>Storage</span><strong>S3 private storage</strong></div>
+                <div class="resource-link"><span>Async</span><strong>SQS/Lambda async processing</strong></div>
+                <div class="resource-link"><span>Delivery</span><strong>CloudFront delivery</strong></div>
+                <div class="resource-link"><span>Ops</span><strong>ECS on EC2, k6, CloudWatch</strong></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <nav class="wrap room-actions" aria-label="이전 다음 섹션">
+        <a href="../oneasset.html">All Sections</a>
+        <a href="problem-goal.html">Next: Problem &amp; Goal</a>
+      </nav>
+    </main>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer>
+  </body>
+</html>

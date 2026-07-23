@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pium System Design 섹션입니다." />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Pium | System Design</title>
+    <link rel="stylesheet" href="section.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="wrap nav" aria-label="Pium 섹션 내비게이션">
+        <a class="brand" href="../../index.html">Kim Minseo</a>
+        <a class="nav-link" href="../pium.html">All Sections</a>
+      </nav>
+    </header>
+
+    <main class="gallery-room">
+      <div class="room-main">
+        <div class="wrap room-layout">
+          <aside class="room-index" aria-label="Pium 섹션 목록">
+            <span class="project-name">Pium</span>
+            <div class="room-list">
+              <a href="executive-summary.html"><span>01</span>Executive Summary</a>
+              <a href="why.html"><span>02</span>Why</a>
+              <a href="product-overview.html"><span>03</span>Product Overview</a>
+              <a href="system-design.html" aria-current="page"><span>04</span>System Design</a>
+              <a href="technical-challenges.html"><span>05</span>Technical Challenges</a>
+              <a href="infrastructure-deployment.html"><span>06</span>Infrastructure &amp; Deployment</a>
+            </div>
+          </aside>
+          <section class="room-stage">
+            <div>
+              <span class="room-number">04</span>
+              <h1>System Design</h1>
+            </div>
+            <div class="room-content">
+              <div class="media-stack">
+                <div class="media-section">
+                  <h2>System Architecture</h2>
+                  <figure class="diagram">
+                    <a
+                      href="../../assets/pium/pium_architecture.drawio.png"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        src="../../assets/pium/pium_architecture.drawio.png"
+                        alt="Pium 시스템 아키텍처 다이어그램"
+                      />
+                    </a>
+                  </figure>
+                  <p class="lede">
+                    클라이언트 요청은 Nginx를 통해 Spring Boot 애플리케이션으로 전달되며,
+                    영속 데이터는 MySQL에 저장합니다. 사진 분석 작업은 비동기 작업으로
+                    처리하고 Caffeine Cache에 임시 세션으로 관리하여 진단 결과에서
+                    통합합니다. OpenAI API와 OAuth Provider는 외부 어댑터를 통해
+                    연동합니다.
+                  </p>
+                </div>
+                <div class="media-section">
+                  <h2>Backend Architecture</h2>
+                  <figure class="diagram">
+                    <a
+                      href="../../assets/pium/piumBackendArchitecture.jpg"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        src="../../assets/pium/piumBackendArchitecture.jpg"
+                        alt="Pium 백엔드 아키텍처 다이어그램"
+                      />
+                    </a>
+                  </figure>
+                  <div class="content-grid">
+                    <div class="content-block">
+                      <h2>Inbound</h2>
+                      <p>REST API Controller가 클라이언트 요청을 받고 Application Use Case를 실행합니다.</p>
+                    </div>
+                    <div class="content-block">
+                      <h2>Application</h2>
+                      <p>인증, 피부 분석, 이미지 분석, 상품 추천, 관리자 기능의 흐름을 조합합니다.</p>
+                    </div>
+                    <div class="content-block">
+                      <h2>Domain</h2>
+                      <p>User, Skin Analysis, Recommendation, Product 도메인 정책을 중심에 둡니다.</p>
+                    </div>
+                    <div class="content-block">
+                      <h2>Outbound</h2>
+                      <p>MySQL/JPA, OAuth Provider, OpenAI, JWT 같은 외부 기술을 어댑터로 분리합니다.</p>
+                    </div>
+                  </div>
+                  <p class="quote">
+                    핵심 도메인 로직이 특정 인프라 구현에 직접 의존하지 않도록
+                    Adapter-Application-Domain 계층으로 구성했습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <nav class="wrap room-actions" aria-label="이전 다음 섹션">
+        <a href="product-overview.html">Previous: Product Overview</a>
+        <a href="technical-challenges.html">Next: Technical Challenges</a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">© 2026 Kim Minseo</div>
+    </footer>
+  </body>
+</html>

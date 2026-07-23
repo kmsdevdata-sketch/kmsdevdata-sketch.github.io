@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pium Executive Summary 섹션입니다." />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Pium | Executive Summary</title>
+    <link rel="stylesheet" href="section.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="wrap nav" aria-label="Pium 섹션 내비게이션">
+        <a class="brand" href="../../index.html">Kim Minseo</a>
+        <a class="nav-link" href="../pium.html">All Sections</a>
+      </nav>
+    </header>
+
+    <main class="gallery-room">
+      <div class="room-main">
+        <div class="wrap room-layout">
+          <aside class="room-index" aria-label="Pium 섹션 목록">
+            <span class="project-name">Pium</span>
+            <div class="room-list">
+              <a href="executive-summary.html" aria-current="page"><span>01</span>Executive Summary</a>
+              <a href="why.html"><span>02</span>Why</a>
+              <a href="product-overview.html"><span>03</span>Product Overview</a>
+              <a href="system-design.html"><span>04</span>System Design</a>
+              <a href="technical-challenges.html"><span>05</span>Technical Challenges</a>
+              <a href="infrastructure-deployment.html"><span>06</span>Infrastructure &amp; Deployment</a>
+            </div>
+          </aside>
+          <section class="room-stage">
+            <div>
+              <span class="room-number">01</span>
+              <h1>Executive Summary</h1>
+            </div>
+            <div class="room-content">
+              <div class="content-grid">
+                <div class="content-block">
+                  <h2>프로젝트 한 줄 설명</h2>
+                  <p>사용자의 피부 상태를 분석하여 추천 성분을 통한 제품과 루틴을 추천하는 서비스</p>
+                </div>
+                <div class="content-block">
+                  <h2>Information</h2>
+                  <div class="info-list">
+                    <div class="info-row">
+                      <span>프로젝트 유형</span>
+                      <strong>개인 프로젝트</strong>
+                    </div>
+                    <div class="info-row">
+                      <span>기반</span>
+                      <strong>SWYP 웹 13기 팀 프로젝트 개인 개선 및 출시</strong>
+                    </div>
+                    <div class="info-row">
+                      <span>개발 기간</span>
+                      <strong>2026/05/01 - 진행 중</strong>
+                    </div>
+                  </div>
+                  <div class="resource-links" aria-label="Pium 외부 링크">
+                    <a class="resource-link" href="https://www.pium.app/" target="_blank" rel="noreferrer">
+                      <span>Web</span>
+                      <strong>피움웹</strong>
+                    </a>
+                    <a
+                      class="resource-link"
+                      href="https://minion.toss.im/XkmEXJpA"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span>Mini App</span>
+                      <strong>피움 미니앱</strong>
+                    </a>
+                    <a
+                      class="resource-link"
+                      href="https://github.com/kmsdevdata-sketch/pium-api.git"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span>GitHub</span>
+                      <strong>깃허브 링크</strong>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="content-block">
+                <h2>Summary</h2>
+                <p>
+                  피움(Pium)은 설문과 얼굴 사진을 기반으로 피부 상태를 7개 지표로
+                  분석하고, 사용자에게 적합한 피부제품을 추천하는 개인화 피부 관리
+                  서비스입니다. SWYP 웹 13기 팀 프로젝트를 기반으로 시작했으며, 이후
+                  개인적으로 전반 구조를 재구성하고 기능과 운영 환경을 개선해 Toss Mini
+                  App과 웹서비스로 출시했습니다.
+                </p>
+              </div>
+              <div class="content-block">
+                <h2>Backend</h2>
+                <p>
+                  사진 기반 분석은 OpenAI API를 사용하여 사진의 시각 신호 추출과 상품
+                  정보 구조화에 제한적으로 활용하고, 최종 피부 점수와 추천 결과는
+                  백엔드의 규칙 기반 정책으로 결정합니다. 백엔드는 Spring Boot와 MySQL
+                  기반으로 구성했고, DigitalOcean에서 Docker, Nginx, GitHub Actions,
+                  GHCR을 활용한 Blue-Green 방식으로 배포하고 있습니다.
+                </p>
+              </div>
+              <div class="content-block">
+                <h2>Review</h2>
+                <p>
+                  SWYP 웹 13기 팀 프로젝트로 시작한 서비스를 개인적으로 다시 정리하며,
+                  백엔드 구조와 배포 흐름을 전반적으로 재구성했습니다. 전역 예외 처리,
+                  공통 응답 구조, 로깅 필터를 직접 설계하며 확장 가능한 백엔드 구조를
+                  고민했고, API 응답 구조를 지속적으로 개선하며 클라이언트가 사용하기
+                  쉬운 데이터 전달 방식을 설계했습니다. 프론트엔드 구현과 개선에는 Codex를
+                  활용했고, JVM 옵션 튜닝과 Caffeine 캐시 적용을 통해 제한된 서버
+                  리소스를 효율적으로 활용하는 방법을 고민했습니다.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <nav class="wrap room-actions" aria-label="이전 다음 섹션">
+        <a href="../pium.html">All Sections</a>
+        <a href="why.html">Next: Why</a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">© 2026 Kim Minseo</div>
+    </footer>
+  </body>
+</html>

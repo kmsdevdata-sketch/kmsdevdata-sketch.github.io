@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pium Infrastructure & Deployment 섹션입니다." />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Pium | Infrastructure &amp; Deployment</title>
+    <link rel="stylesheet" href="section.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="wrap nav" aria-label="Pium 섹션 내비게이션">
+        <a class="brand" href="../../index.html">Kim Minseo</a>
+        <a class="nav-link" href="../pium.html">All Sections</a>
+      </nav>
+    </header>
+
+    <main class="gallery-room">
+      <div class="room-main">
+        <div class="wrap room-layout">
+          <aside class="room-index" aria-label="Pium 섹션 목록">
+            <span class="project-name">Pium</span>
+            <div class="room-list">
+              <a href="executive-summary.html"><span>01</span>Executive Summary</a>
+              <a href="why.html"><span>02</span>Why</a>
+              <a href="product-overview.html"><span>03</span>Product Overview</a>
+              <a href="system-design.html"><span>04</span>System Design</a>
+              <a href="technical-challenges.html"><span>05</span>Technical Challenges</a>
+              <a href="infrastructure-deployment.html" aria-current="page"><span>06</span>Infrastructure &amp; Deployment</a>
+            </div>
+          </aside>
+          <section class="room-stage">
+            <div>
+              <span class="room-number">06</span>
+              <h1>Infrastructure &amp; Deployment</h1>
+            </div>
+            <div class="room-content">
+              <div class="media-stack">
+                <figure class="diagram">
+                  <a href="../../assets/pium/deployment.drawio.png" target="_blank" rel="noreferrer">
+                    <img
+                      src="../../assets/pium/deployment.drawio.png"
+                      alt="Pium 배포 아키텍처 다이어그램"
+                    />
+                  </a>
+                </figure>
+                <div class="content-grid">
+                  <div class="content-block">
+                    <h2>CI/CD Pipeline</h2>
+                    <p>
+                      기능 브랜치를 main에 병합하면 GitHub Actions CI가 테스트와 bootJar
+                      빌드를 수행합니다. CI 성공 시 Deploy Workflow가 Docker 이미지를
+                      빌드해 GHCR에 SHA 및 latest 태그로 업로드합니다.
+                    </p>
+                  </div>
+                  <div class="content-block">
+                    <h2>Blue-Green Deployment</h2>
+                    <p>
+                      GitHub Actions는 SSH를 통해 DigitalOcean 서버의 배포 스크립트를
+                      실행합니다. 배포 스크립트는 현재 운영 중이지 않은 슬롯에 신규
+                      이미지를 실행합니다.
+                    </p>
+                    <table class="deployment-table">
+                      <thead>
+                        <tr>
+                          <th>슬롯</th>
+                          <th>호스트 포트</th>
+                          <th>컨테이너 포트</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Blue</td>
+                          <td>8081</td>
+                          <td>8080</td>
+                        </tr>
+                        <tr>
+                          <td>Green</td>
+                          <td>8082</td>
+                          <td>8080</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="content-block">
+                  <h2>Deployment Failure Handling</h2>
+                  <p>
+                    신규 컨테이너의 Health Check가 실패하면 Nginx upstream을 변경하지
+                    않습니다. 따라서 기존 컨테이너가 계속 요청을 처리하고, 실패한 신규
+                    배포의 로그를 확인할 수 있습니다.
+                  </p>
+                  <p class="quote">
+                    정상 상태가 확인된 컨테이너만 운영 트래픽을 받도록 하여 배포 중단
+                    위험을 줄였습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <nav class="wrap room-actions" aria-label="이전 다음 섹션">
+        <a href="technical-challenges.html">Previous: Technical Challenges</a>
+        <a href="../pium.html">All Sections</a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">© 2026 Kim Minseo</div>
+    </footer>
+  </body>
+</html>

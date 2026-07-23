@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="OneAsset Backend Architecture 섹션입니다." />
+    <meta name="theme-color" content="#ffffff" />
+    <title>OneAsset | Backend Architecture</title>
+    <link rel="stylesheet" href="section.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="wrap nav" aria-label="OneAsset 섹션 내비게이션">
+        <a class="brand" href="../../index.html">Kim Minseo</a>
+        <a class="nav-link" href="../oneasset.html">All Sections</a>
+      </nav>
+    </header>
+    <main class="gallery-room">
+      <div class="room-main">
+        <div class="wrap room-layout">
+          <aside class="room-index" aria-label="OneAsset 섹션 목록">
+            <span class="project-name">OneAsset</span>
+            <div class="room-list">
+              <a href="project-overview.html"><span>01</span>Project Overview</a>
+              <a href="problem-goal.html"><span>02</span>Problem &amp; Goal</a>
+              <a href="aws-architecture.html"><span>03</span>AWS Architecture</a>
+              <a href="backend-architecture.html" aria-current="page"><span>04</span>Backend Architecture</a>
+              <a href="asset-processing-flow.html"><span>05</span>Asset Processing Flow</a>
+              <a href="data-model.html"><span>06</span>Data Model</a>
+              <a href="deployment-operations.html"><span>07</span>Deployment &amp; Operations</a>
+              <a href="load-test-observability.html"><span>08</span>Load Test &amp; Observability</a>
+              <a href="troubleshooting.html"><span>09</span>Troubleshooting</a>
+              <a href="next-steps.html"><span>10</span>Next Steps</a>
+            </div>
+          </aside>
+          <section class="room-stage">
+            <div><span class="room-number">04</span><h1>Backend Architecture</h1></div>
+            <div class="room-content">
+              <div class="diagram">
+                <div class="visual-placeholder compact">
+                  <div>
+                    <strong>Backend Layer Diagram</strong>
+                    <span>Controller, Application Service, Domain, Port, Adapter 계층 이미지 자리</span>
+                  </div>
+                </div>
+              </div>
+              <p class="lede">
+                백엔드는 Controller, Application Service, Domain, Outbound Adapter로 나눴습니다.
+              </p>
+              <div class="content-grid">
+                <div class="content-block">
+                  <h2>Application Flow</h2>
+                  <p>
+                    Controller는 HTTP 요청을 받아 command로 변환하고, Application Service는
+                    파일 저장, 메타데이터 저장, 큐 발행, 상태 전이를 조율합니다.
+                  </p>
+                </div>
+                <div class="content-block">
+                  <h2>Port &amp; Adapter</h2>
+                  <p>
+                    S3, SQS, JPA 같은 외부 기술은 Port와 Adapter 뒤로 분리하여 핵심
+                    애플리케이션 흐름이 특정 인프라 구현에 직접 묶이지 않도록 했습니다.
+                  </p>
+                </div>
+              </div>
+              <p class="quote">
+                에셋 업로드는 단순 저장이 아니라 S3 저장, Asset PROCESSING 저장, SQS
+                발행까지 하나의 애플리케이션 흐름으로 관리합니다.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+      <nav class="wrap room-actions" aria-label="이전 다음 섹션">
+        <a href="aws-architecture.html">Previous: AWS Architecture</a>
+        <a href="asset-processing-flow.html">Next: Asset Processing Flow</a>
+      </nav>
+    </main>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer>
+  </body>
+</html>

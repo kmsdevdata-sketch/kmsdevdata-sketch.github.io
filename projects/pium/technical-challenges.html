@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pium Technical Challenges 섹션입니다." />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Pium | Technical Challenges</title>
+    <link rel="stylesheet" href="section.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="wrap nav" aria-label="Pium 섹션 내비게이션">
+        <a class="brand" href="../../index.html">Kim Minseo</a>
+        <a class="nav-link" href="../pium.html">All Sections</a>
+      </nav>
+    </header>
+
+    <main class="gallery-room">
+      <div class="room-main">
+        <div class="wrap room-layout">
+          <aside class="room-index" aria-label="Pium 섹션 목록">
+            <span class="project-name">Pium</span>
+            <div class="room-list">
+              <a href="executive-summary.html"><span>01</span>Executive Summary</a>
+              <a href="why.html"><span>02</span>Why</a>
+              <a href="product-overview.html"><span>03</span>Product Overview</a>
+              <a href="system-design.html"><span>04</span>System Design</a>
+              <a href="technical-challenges.html" aria-current="page"><span>05</span>Technical Challenges</a>
+              <a href="infrastructure-deployment.html"><span>06</span>Infrastructure &amp; Deployment</a>
+            </div>
+          </aside>
+          <section class="room-stage">
+            <div>
+              <span class="room-number">05</span>
+              <h1>Technical Challenges</h1>
+            </div>
+            <div class="room-content">
+              <ul class="section-list">
+                <li>
+                  <strong>설문 점수를 복합 피부 상태로 해석하기</strong><br />
+                  설문 점수는 물리적 측정값이 아니므로 점수 차이를 피부 상태의 정확한
+                  비율로 해석할 수 없습니다. 이를 해결하기 위해 피부 상태를 7개 지표로
+                  분리하고, 점수는 내부 계산에만 사용했습니다. 사용자에게는 LOW / MID /
+                  HIGH 상태와 지표 조합에 따른 해석을 제공합니다.
+                </li>
+                <li>
+                  <strong>진단 완료율 개선을 위한 AI 사진 분석</strong><br />
+                  11개의 설문 문항이 진입 장벽으로 작용해 진단 결과 확인 전 이탈하는
+                  사용자가 많다는 문제를 확인했습니다. 트러블, 색소, 노화처럼 이미지에서
+                  비교적 관측하기 쉬운 지표는 AI 분석 결과를 중심으로 산출하고, 건조,
+                  유분, 민감처럼 사진만으로 판단하기 어려운 지표는 보조 문항과 결합하는
+                  방식으로 개선했습니다.
+                </li>
+                <li>
+                  <strong>AI 기반 상품 메타데이터 생성과 안전한 추천</strong><br />
+                  AI가 상품 추천까지 직접 수행하면 판단 근거와 일관성을 통제하기
+                  어렵습니다. AI는 상품 원본 데이터를 ProductProfile 메타데이터로
+                  구조화하는 데 사용하고, 실제 추천은 서버의 안전성 게이트와 점수 정책이
+                  담당하도록 역할을 분리했습니다.
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+      <nav class="wrap room-actions" aria-label="이전 다음 섹션">
+        <a href="system-design.html">Previous: System Design</a>
+        <a href="infrastructure-deployment.html">Next: Infrastructure &amp; Deployment</a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">© 2026 Kim Minseo</div>
+    </footer>
+  </body>
+</html>
