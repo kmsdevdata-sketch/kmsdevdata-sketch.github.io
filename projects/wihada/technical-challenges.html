@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Technical Challenges 섹션입니다." /><title>위하다 | Technical Challenges</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="technical-challenges.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name">위하다</span><div class="room-list"></div></aside>
+      <section class="room-stage"><div><span class="room-number">07</span><h1>Technical Challenges</h1></div><div class="room-content">
+        <div class="content-block"><h2>트랜잭션과 실시간 타임라인의 일관성</h2><p>DB 저장 직후 WebSocket 이벤트를 먼저 발행하면 클라이언트의 REST 재조회가 커밋보다 먼저 실행될 수 있습니다. 타임라인 데이터는 트랜잭션 안에서 저장하고 실시간 발행은 AFTER_COMMIT 단계에서 수행했습니다. Redis Pub/Sub으로 여러 애플리케이션 인스턴스에 이벤트를 전달하고, 채팅방 Topic과 사용자별 문의 Topic의 책임을 분리했습니다.</p></div>
+        <div class="content-block"><h2>주문 스냅샷과 현재 상담 상태 분리</h2><p>문의방의 현재 참조 이미지를 과거 주문에서도 사용하면 이미지 변경 시 이전 기록까지 바뀝니다. OrderFormSubmission에 제출 당시 이미지를 저장하고 주문 CTA와 상세 조회가 해당 스냅샷을 사용하도록 변경했습니다. 주문서별 sellerViewedAt과 현재 submission 식별값을 분리해 과거 이벤트가 현재 상담을 오염시키지 않도록 했습니다.</p></div>
+        <div class="content-block"><h2>결제 멱등성과 상태 추적</h2><p>새로고침, 네트워크 재시도와 중복 클릭으로 같은 주문확인서에 결제 요청이 반복될 수 있습니다. 외부 결제 요청을 PaymentAttempt로 별도 관리하고 진행 중인 시도를 재사용했습니다. 완료 처리에서는 기존 주문과 결제 상태를 확인해 반복 요청에도 주문이 중복 생성되지 않도록 했습니다.</p></div>
+        <div class="content-block"><h2>비동기 이미지 처리</h2><p>원본 저장과 variant 생성을 분리하고 SQS를 버퍼로 사용해 API 응답이 이미지 처리 시간에 종속되지 않도록 했습니다. 클라이언트는 저장소 경로를 직접 조합하지 않고 백엔드가 제공하는 에셋 상태와 deliveryUrl을 사용합니다.</p></div>
+      </div></section>
+    </div></div><nav class="wrap room-actions" aria-label="이전 다음 섹션"></nav></main>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>

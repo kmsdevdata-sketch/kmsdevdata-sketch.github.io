@@ -79,7 +79,7 @@
       }
 
       .hero {
-        padding: 108px 0 86px;
+        padding: 88px 0 72px;
       }
 
       .eyebrow {
@@ -99,7 +99,7 @@
       h1 {
         max-width: 920px;
         margin: 0;
-        font-size: clamp(4rem, 10vw, 8rem);
+        font-size: clamp(3.8rem, 9vw, 7.2rem);
         font-weight: 780;
         line-height: 1;
         letter-spacing: 0;
@@ -141,7 +141,7 @@
       }
 
       section {
-        padding: 58px 0;
+        padding: 52px 0;
         border-top: 1px solid var(--line);
       }
 
@@ -153,13 +153,13 @@
       }
 
       .project-section {
-        min-height: 220px;
+        min-height: 180px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         border-right: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
-        padding: 24px;
+        padding: 22px;
       }
 
       .project-section:hover {
@@ -182,7 +182,7 @@
 
       .section-action {
         display: block;
-        margin-top: 22px;
+        margin-top: 18px;
         color: var(--muted);
         font-size: 13px;
         font-weight: 760;
@@ -206,7 +206,7 @@
         }
 
         .hero {
-          padding: 78px 0 62px;
+          padding: 68px 0 54px;
         }
 
         h1 {
@@ -234,9 +234,35 @@
         }
 
         .project-section {
-          min-height: 180px;
-          padding: 22px;
+          min-height: 150px;
+          padding: 20px;
         }
+      }
+      /* Compact project index inside the portfolio modal */
+      .in-project-modal .site-header { display: none; }
+      .hero { padding: 48px 0 38px; }
+      .eyebrow { margin-bottom: 12px; font-size: 12px; }
+      .hero-head { align-items: center; }
+      h1 { font-size: clamp(3.1rem, 7vw, 5.7rem); }
+      .hero-subtitle { max-width: 620px; margin-top: 14px; font-size: 1.08rem; }
+      section:not(.hero) { padding: 28px 0 44px; }
+      .project-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .project-section { min-height: 104px; display: grid; grid-template-columns: 42px minmax(0, 1fr) 24px; align-items: center; gap: 14px; padding: 18px 20px; }
+      .project-section::after { color: var(--faint); content: "→"; font-size: 18px; transition: transform 160ms ease, color 160ms ease; }
+      .project-section:hover::after { color: var(--text); transform: translateX(3px); }
+      .project-section h2 { font-size: clamp(1.08rem, 1.7vw, 1.38rem); line-height: 1.25; }
+      .section-action { display: none; }
+      .site-footer { padding: 20px 0 26px; }
+      @media (max-width: 760px) {
+        .hero { padding: 34px 0 28px; }
+        .hero-head { gap: 16px; }
+        h1 { font-size: 3.25rem; }
+        .hero-actions { gap: 6px; }
+        .hero-link { min-height: 34px; padding: 0 11px; font-size: 12px; }
+        section:not(.hero) { padding: 22px 0 32px; }
+        .project-board { grid-template-columns: 1fr; }
+        .project-section { min-height: 72px; grid-template-columns: 34px minmax(0, 1fr) 20px; padding: 13px 14px; }
+        .project-section h2 { font-size: 1rem; }
       }
     </style>
   </head>

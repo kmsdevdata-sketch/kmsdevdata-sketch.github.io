@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Backend Architecture 섹션입니다." /><title>위하다 | Backend Architecture</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="backend-architecture.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name">위하다</span><div class="room-list"></div></aside>
+      <section class="room-stage"><div><span class="room-number">05</span><h1>Backend Architecture</h1></div><div class="room-content">
+        <figure class="diagram"><a href="../../assets/wihada/backend-architecture.png" target="_blank" rel="noreferrer"><img src="../../assets/wihada/backend-architecture.png" alt="위하다 백엔드 헥사고날 아키텍처" /></a></figure>
+        <p class="lede">비즈니스 도메인별 패키지 구조와 헥사고날 아키텍처의 의존 방향을 적용했습니다. Controller부터 Provided Port, Application, Domain, Required Port와 Outbound Adapter로 이어지는 구조입니다.</p>
+        <div class="content-grid">
+          <div class="content-block"><h2>Inbound &amp; Application</h2><p>REST Controller, WebSocket/STOMP Endpoint와 Security가 Inbound Adapter 역할을 담당합니다. Provided Port는 실행 가능한 유스케이스 계약을 정의하고 Application은 실행 순서, 트랜잭션, 도메인 및 Port 호출을 조율합니다.</p></div>
+          <div class="content-block"><h2>Domain &amp; Outbound</h2><p>Domain은 주문, 상담, 결제와 환불의 상태 및 규칙을 보유합니다. Required Port가 영속성, 실시간 이벤트, 객체 저장소, 메시지 큐와 외부 API를 추상화하고 JPA, Redis, AWS, Cognito, Point3 Adapter가 이를 구현합니다.</p></div>
+        </div>
+        <div class="content-grid">
+          <div class="content-block"><h2>Decision</h2><ul class="section-list"><li>비즈니스 규칙과 기술 구현의 변경 범위 분리</li><li>유스케이스 단위 트랜잭션과 작업 경계 표현</li><li>외부 기술을 Port 뒤로 격리</li><li>AI 작업을 유스케이스 또는 어댑터 단위로 제한</li></ul></div>
+          <div class="content-block"><h2>Trade-off</h2><ul class="section-list"><li>Domain Model과 JPA Entity를 통합해 매핑 제약이 일부 남음</li><li>단순 기능에도 Port와 Adapter 구조 비용이 발생</li><li>일부 초기 기능은 Application Service의 책임이 큼</li></ul></div>
+        </div>
+      </div></section>
+    </div></div><nav class="wrap room-actions" aria-label="이전 다음 섹션"></nav></main>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>

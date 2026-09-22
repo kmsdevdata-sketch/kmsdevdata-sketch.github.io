@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Troubleshooting 섹션입니다." /><title>위하다 | Troubleshooting</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="troubleshooting.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name">위하다</span><div class="room-list"></div></aside>
+      <section class="room-stage"><div><span class="room-number">10</span><h1>Troubleshooting</h1></div><div class="room-content">
+        <div class="content-block"><h2>트랜잭션과 실시간 이벤트의 불일치</h2><p><strong>증상.</strong> 주문서·주문확인서·결제 CTA가 새로고침 전까지 나타나지 않았고, 이벤트 직후 재조회 시 커밋 전 데이터를 읽을 가능성이 있었습니다.</p><p><strong>해결.</strong> 타임라인 이벤트를 공통 발행 흐름으로 통합하고 채팅방 Topic과 사용자별 문의 Topic을 분리했습니다. AFTER_COMMIT 단계에서 발행하고 Redis Pub/Sub으로 모든 ECS 인스턴스에 전달했습니다.</p></div>
+        <div class="content-block"><h2>문의 상태와 주문 주기 간의 상태 오염</h2><p><strong>증상.</strong> 여러 주문서가 있는 상담에서 하나를 확인하면 다른 주문서까지 작성 가능해지고, 과거 주문의 결제·픽업이 현재 상담 상태를 변경할 가능성이 있었습니다.</p><p><strong>해결.</strong> 문의방 상태, 주문서별 sellerViewedAt, currentOrderFormSubmissionId의 책임을 분리했습니다. 과거 주문은 정상 처리하되 현재 주문 주기와 일치할 때만 문의 상태를 변경하도록 했습니다.</p></div>
+        <div class="content-block"><h2>변경 가능한 이미지가 과거 주문에 반영</h2><p><strong>증상.</strong> 문의방 시작 이미지를 변경하면 과거 주문서 CTA와 상세 화면 이미지도 현재 값으로 바뀌었습니다.</p><p><strong>해결.</strong> 주문서 제출 시점의 참조 이미지를 OrderFormSubmission에 저장했습니다. 주문 CTA, 상세와 목록은 현재 문의방 이미지가 아닌 해당 submission의 스냅샷을 조회하도록 변경했습니다.</p></div>
+      </div></section>
+    </div></div><nav class="wrap room-actions" aria-label="이전 다음 섹션"></nav></main>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>

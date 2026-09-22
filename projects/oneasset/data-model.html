@@ -6,7 +6,7 @@
     <meta name="description" content="OneAsset Data Model 섹션입니다." />
     <meta name="theme-color" content="#ffffff" />
     <title>OneAsset | Data Model</title>
-    <link rel="stylesheet" href="section.css" />
+    <link rel="stylesheet" href="../case-study.css?v=4" />
   </head>
   <body>
     <header class="site-header">
@@ -60,9 +60,9 @@
                 </div>
               </div>
               <p class="quote">
-                ApiKey는 raw key를 그대로 저장하지 않고, salt와 서버 측 secret을 반영한
-                해시 값과 식별용 prefix만 저장하여 DB 유출 시에도 실제 key가 노출되지 않도록
-                설계했습니다.
+                ApiKey는 SecureRandom으로 생성하고 원문은 발급 시 한 번만 노출합니다.
+                서버에는 식별용 prefix와 서버 secret을 사용한 HMAC-SHA256 결과만 저장하여,
+                DB 유출 시에도 실제 key가 직접 노출되지 않도록 설계했습니다.
               </p>
             </div>
           </section>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Infrastructure & Deployment 섹션입니다." /><title>위하다 | Infrastructure & Deployment</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="infrastructure-deployment.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name">위하다</span><div class="room-list"></div></aside>
+      <section class="room-stage"><div><span class="room-number">08</span><h1>Infrastructure &amp; Deployment</h1></div><div class="room-content">
+        <div class="process-flow" aria-label="위하다 배포 파이프라인"><div class="process-step"><span class="process-number">01</span><strong class="process-label">GitHub main push</strong></div><div class="process-step"><span class="process-number">02</span><strong class="process-label">GitHub Actions<br />Test &amp; Build</strong></div><div class="process-step"><span class="process-number">03</span><strong class="process-label">Docker image<br />ECR push</strong></div><div class="process-step"><span class="process-number">04</span><strong class="process-label">ECS Task Definition<br />update</strong></div><div class="process-step"><span class="process-number">05</span><strong class="process-label">ECS Service<br />ALB Health Check</strong></div></div>
+        <div class="content-grid">
+          <div class="content-block"><h2>Runtime</h2><p>Spring Boot 애플리케이션은 ECS on EC2에서 컨테이너로 실행합니다. RDS PostgreSQL은 영속 데이터를, ElastiCache Valkey는 캐시와 Redis Pub/Sub을 담당합니다.</p></div>
+          <div class="content-block"><h2>Configuration</h2><p>설정과 Secret은 SSM Parameter Store에서 ECS Task Definition으로 주입합니다. 저장소와 배포 로그에는 실제 인증 정보가 남지 않도록 분리했습니다.</p></div>
+          <div class="content-block"><h2>Health &amp; Logs</h2><p>Actuator Health Check로 ALB Target 상태와 배포 성공 여부를 확인하고 애플리케이션 로그는 CloudWatch Logs로 전달합니다.</p></div>
+          <div class="content-block"><h2>Constraint</h2><p>제한된 개발 인프라에서는 단일 ECS 인스턴스와 작은 desired count를 사용했습니다. 현재 배포를 블루·그린이나 완전한 고가용성 환경으로 표현하지 않았습니다.</p></div>
+        </div>
+      </div></section>
+    </div></div><nav class="wrap room-actions" aria-label="이전 다음 섹션"></nav></main>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>

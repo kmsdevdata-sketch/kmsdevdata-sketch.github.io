@@ -163,6 +163,7 @@
         min-height: 44px;
         align-items: center;
         justify-content: center;
+        gap: 8px;
         border: 1px solid var(--line-strong);
         border-radius: 6px;
         padding: 0 16px;
@@ -608,314 +609,1734 @@
           flex-direction: column;
         }
       }
+
+      /* Unified profile layout */
+      .profile-overview {
+        padding: 104px 0 72px;
+        border-top: 0;
+      }
+
+      .profile-intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 310px;
+        gap: 72px;
+        align-items: end;
+        padding-bottom: 72px;
+      }
+
+      .profile-intro h1 {
+        margin-bottom: 28px;
+        font-size: clamp(4.4rem, 10vw, 8rem);
+      }
+
+      .profile-intro .hero-copy {
+        margin-bottom: 30px;
+      }
+
+      .profile-portrait {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--surface);
+      }
+
+      .profile-portrait img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center 18%;
+      }
+
+      .profile-document {
+        border-top: 1px solid var(--line-strong);
+      }
+
+      .profile-band {
+        display: grid;
+        grid-template-columns: 170px minmax(0, 1fr);
+        gap: 48px;
+        padding: 42px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .profile-band-head {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+      }
+
+      .profile-band-number {
+        color: var(--faint);
+        font-size: 12px;
+        font-weight: 760;
+      }
+
+      .profile-band h2 {
+        font-size: 20px;
+        line-height: 1.25;
+      }
+
+      .profile-band .experience-list,
+      .profile-band .stack-list {
+        border-top: 0;
+      }
+
+      .profile-band .experience-row,
+      .profile-band .stack-row {
+        grid-template-columns: 180px minmax(0, 1fr);
+        gap: 28px;
+        padding: 18px 0;
+      }
+
+      .profile-band .experience-row:first-child,
+      .profile-band .stack-row:first-child {
+        padding-top: 0;
+      }
+
+      .profile-band .experience-row:last-child,
+      .profile-band .stack-row:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .profile-band .cert-list {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .profile-band .cert-card {
+        display: grid;
+        grid-template-columns: 90px 110px minmax(0, 1fr);
+        align-items: center;
+        gap: 20px;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        padding: 17px 0;
+      }
+
+      .profile-band .cert-card:first-child {
+        padding-top: 0;
+      }
+
+      .profile-band .cert-card:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .profile-band .cert-provider,
+      .profile-band .cert-code,
+      .profile-band .cert-card h3 {
+        margin: 0;
+      }
+
+      .profile-band .cert-card h3 {
+        font-size: 17px;
+      }
+
+      .profile-band .contact-panel {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .projects-section {
+        padding-top: 76px;
+        background: var(--surface);
+      }
+
+      .projects-section .section-head {
+        margin-bottom: 36px;
+      }
+
+      .project-gallery {
+        display: grid;
+        gap: 18px;
+      }
+
+      .project-gallery .project-row {
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 42%);
+        gap: 44px;
+        min-height: 330px;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: 7px;
+        padding: 34px;
+        background: #ffffff;
+      }
+
+      .project-gallery .project-row:hover {
+        background: #ffffff;
+        border-color: #9da2aa;
+      }
+
+      .project-gallery .project-content {
+        align-self: center;
+      }
+
+      .project-gallery .project-preview {
+        min-height: 260px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        background: var(--surface);
+      }
+
+      .project-preview img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: top center;
+      }
+
+      .project-open {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        border: 0;
+        padding: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .project-open:focus-visible {
+        outline: 3px solid rgba(31, 111, 235, 0.45);
+        outline-offset: -3px;
+      }
+
+      .project-gallery .project-title-actions {
+        position: relative;
+        z-index: 2;
+      }
+
+      .project-modal {
+        width: min(680px, calc(100% - 40px));
+        max-height: min(820px, calc(100dvh - 48px));
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: 8px;
+        padding: 0;
+        background: #ffffff;
+        color: var(--text);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+      }
+
+      .project-modal::backdrop {
+        background: rgba(15, 15, 16, 0.64);
+        backdrop-filter: blur(2px);
+      }
+
+      .project-modal-shell {
+        position: relative;
+        max-height: min(820px, calc(100dvh - 48px));
+        overflow-y: auto;
+        padding: 44px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: #ffffff;
+        color: var(--text);
+        font-size: 22px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .modal-preview {
+        aspect-ratio: 16 / 9;
+        margin: 30px 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        background: var(--surface);
+      }
+
+      .modal-preview img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: top center;
+      }
+
+      .modal-content .project-title-bar {
+        padding-right: 44px;
+      }
+
+      .modal-content .project-title-actions {
+        margin-top: 26px;
+        justify-content: flex-start;
+      }
+
+      body:has(.project-modal[open]) {
+        overflow: hidden;
+      }
+
+      #experience {
+        display: block;
+      }
+
+      #experience .profile-band-head {
+        margin-bottom: 30px;
+      }
+
+      #experience .profile-band-number {
+        display: none;
+      }
+
+      #experience .experience-list {
+        padding-left: 0;
+      }
+
+      #experience .experience-row {
+        grid-template-columns: 18px 220px 1px minmax(0, 1fr);
+        gap: 28px;
+        align-items: start;
+        border-bottom: 0;
+        padding: 0 0 30px;
+      }
+
+      #experience .experience-row:last-child {
+        padding-bottom: 0;
+      }
+
+      .experience-marker {
+        position: relative;
+        width: 18px;
+        min-height: 54px;
+      }
+
+      .experience-marker::before {
+        position: absolute;
+        top: 4px;
+        left: 1px;
+        width: 16px;
+        height: 16px;
+        border: 3px solid #ffffff;
+        border-radius: 50%;
+        background: #b9bec6;
+        content: "";
+      }
+
+      .experience-row:not(:last-child) .experience-marker::after {
+        position: absolute;
+        top: 20px;
+        bottom: -34px;
+        left: 8px;
+        width: 1px;
+        background: var(--line);
+        content: "";
+      }
+
+      .experience-divider {
+        width: 1px;
+        min-height: 54px;
+        background: var(--line);
+      }
+
+      #experience .row-main {
+        min-height: 48px;
+        border-left: 0;
+        padding-left: 0;
+      }
+
+      #experience .row-main h3 {
+        font-size: 20px;
+      }
+
+      .project-modal {
+        width: min(1240px, calc(100% - 48px));
+        height: calc(100dvh - 48px);
+        max-height: none;
+      }
+
+      .project-modal-shell {
+        height: 100%;
+        max-height: none;
+        overflow: hidden;
+        padding: 0;
+      }
+
+      .project-modal-toolbar {
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        border-bottom: 1px solid var(--line);
+        padding: 0 16px 0 22px;
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .project-modal-heading {
+        min-width: 0;
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+      }
+
+      .project-modal-heading strong {
+        overflow: hidden;
+        font-size: 15px;
+        font-weight: 760;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .project-modal-heading span {
+        color: var(--faint);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .modal-close {
+        position: static;
+        z-index: 3;
+        flex: 0 0 auto;
+        border-color: transparent;
+        background: var(--surface);
+        box-shadow: none;
+        font-size: 20px;
+      }
+
+      .modal-close:hover {
+        border-color: var(--line);
+        background: #eeeeef;
+      }
+
+      .project-frame {
+        width: 100%;
+        height: calc(100% - 58px);
+        display: block;
+        border: 0;
+        background: #ffffff;
+      }
+
+      .project-frame-loading {
+        position: absolute;
+        inset: 58px 0 0;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        background: #ffffff;
+        color: var(--faint);
+        font-size: 13px;
+        font-weight: 700;
+        transition: opacity 160ms ease;
+      }
+
+      .project-modal-shell.is-ready .project-frame-loading {
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .project-frame-loading[hidden] {
+        display: none;
+      }
+
+      .profile-intro {
+        grid-template-columns: minmax(0, 3fr) minmax(360px, 2fr);
+        gap: 56px;
+        align-items: start;
+        padding-bottom: 48px;
+      }
+
+      .profile-summary {
+        min-width: 0;
+      }
+
+      .identity-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .identity-row .profile-portrait {
+        flex: 0 0 auto;
+        width: 112px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+      }
+
+      .identity-copy {
+        min-width: 0;
+      }
+
+      .identity-copy .eyebrow {
+        margin-bottom: 8px;
+      }
+
+      .profile-intro .identity-copy h1 {
+        margin: 0;
+        font-size: clamp(4rem, 7vw, 6.6rem);
+      }
+
+      .profile-intro .hero-copy {
+        max-width: 650px;
+        margin: 28px 0;
+        font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      }
+
+      .button svg {
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .button svg path[fill] {
+        fill: currentColor;
+        stroke: none;
+      }
+
+      .experience-panel {
+        min-width: 0;
+        height: auto;
+        min-height: 0;
+        align-self: start;
+        border-top: 0;
+        border-left: 1px solid var(--line);
+        padding: 8px 0 8px 44px;
+      }
+
+      .experience-panel .profile-band-head {
+        margin-bottom: 26px;
+      }
+
+      .experience-panel h2 {
+        margin: 0;
+        font-size: 20px;
+      }
+
+      #experience .experience-row {
+        grid-template-columns: 16px 122px 1px minmax(0, 1fr);
+        gap: 16px;
+        padding-bottom: 24px;
+      }
+
+      #experience .experience-list {
+        display: grid;
+        align-content: start;
+        border-top: 0;
+      }
+
+      #experience .row-meta {
+        padding-top: 2px;
+        font-size: 12px;
+      }
+
+      #experience .row-main h3 {
+        font-size: 16px;
+      }
+
+      #experience .title-with-tags {
+        align-items: center;
+        gap: 7px;
+      }
+
+      #experience .tag {
+        padding: 4px 8px;
+        font-size: 11px;
+      }
+
+      .profile-document {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
+      }
+
+      #stack {
+        grid-column: 1 / -1;
+      }
+
+      #stack,
+      #certifications,
+      #contact {
+        display: block;
+        padding: 30px 0;
+      }
+
+      #stack .profile-band-head,
+      #certifications .profile-band-head,
+      #contact .profile-band-head {
+        margin-bottom: 22px;
+      }
+
+      #stack .profile-band-number,
+      #certifications .profile-band-number,
+      #contact .profile-band-number {
+        display: none;
+      }
+
+      #stack .stack-row {
+        grid-template-columns: 170px minmax(0, 1fr);
+        gap: 28px;
+        padding: 10px 0;
+      }
+
+      #certifications {
+        border-right: 1px solid var(--line);
+        padding-right: 42px;
+      }
+
+      #contact {
+        padding-left: 42px;
+      }
+
+      #certifications .cert-card {
+        grid-template-columns: 74px 92px minmax(0, 1fr);
+        gap: 14px;
+        padding: 10px 0;
+      }
+
+      #certifications .cert-card h3 {
+        font-size: 15px;
+      }
+
+      @media (max-width: 900px) {
+        .profile-intro {
+          grid-template-columns: 1fr;
+          gap: 42px;
+        }
+
+        .profile-band {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .experience-panel {
+          border-top: 1px solid var(--line);
+          border-left: 0;
+          padding: 36px 0 0;
+        }
+
+        .profile-document {
+          grid-template-columns: 1fr;
+        }
+
+        #stack,
+        #certifications,
+        #contact {
+          grid-column: 1;
+          border-right: 0;
+          padding: 30px 0;
+        }
+
+        #contact {
+          padding-left: 0;
+        }
+
+        .project-gallery .project-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .profile-overview {
+          padding: 68px 0 52px;
+        }
+
+        .profile-intro {
+          grid-template-columns: 1fr;
+          gap: 28px;
+          padding-bottom: 52px;
+        }
+
+        .identity-row .profile-portrait {
+          width: 78px;
+          aspect-ratio: 1;
+          border-radius: 50%;
+        }
+
+        .profile-intro .identity-copy h1 {
+          font-size: clamp(3rem, 15vw, 4.5rem);
+        }
+
+        .profile-band {
+          padding: 34px 0;
+        }
+
+        .profile-band .experience-row,
+        .profile-band .stack-row {
+          grid-template-columns: 1fr;
+          gap: 9px;
+        }
+
+        #experience .experience-list {
+          padding-left: 0;
+        }
+
+        #experience .experience-row {
+          grid-template-columns: 18px minmax(0, 1fr);
+          gap: 0 18px;
+          padding-bottom: 28px;
+        }
+
+        #experience .experience-row .row-meta,
+        #experience .experience-row .row-main {
+          grid-column: 2;
+        }
+
+        #experience .experience-row .row-main {
+          margin-top: 8px;
+        }
+
+        .experience-marker {
+          grid-row: 1 / span 2;
+        }
+
+        .experience-divider {
+          display: none;
+        }
+
+        #experience .row-main {
+          min-height: 0;
+          border-left: 0;
+          padding-left: 0;
+        }
+
+        .profile-band .cert-card {
+          grid-template-columns: 72px minmax(0, 1fr);
+          gap: 8px 14px;
+        }
+
+        .profile-band .cert-card h3 {
+          grid-column: 1 / -1;
+        }
+
+        .project-gallery .project-row {
+          min-height: 0;
+          gap: 24px;
+          padding: 22px;
+        }
+
+        .project-gallery .project-preview {
+          min-height: 190px;
+        }
+
+        .project-modal-shell {
+          padding: 0;
+        }
+
+        .modal-content .project-title-bar {
+          padding-right: 30px;
+        }
+
+        .project-modal {
+          width: 100vw;
+          max-width: 100vw;
+          height: 100dvh;
+          max-height: none;
+          margin: 0;
+          border: 0;
+          border-radius: 0;
+        }
+
+        .project-modal-toolbar {
+          height: 56px;
+          padding: 0 14px 0 18px;
+        }
+
+        .project-frame {
+          height: calc(100% - 56px);
+        }
+
+        .project-frame-loading {
+          inset: 56px 0 0;
+        }
+      }
+
+      /* Responsive layout stabilization */
+      .profile-document {
+        display: block;
+      }
+
+      #certifications {
+        border-right: 0;
+        padding-right: 0;
+      }
+
+      .project-gallery .project-row {
+        height: 360px;
+        min-height: 360px;
+        max-height: 360px;
+        grid-template-columns: minmax(0, 1fr) 420px;
+        align-items: center;
+      }
+
+      .project-gallery .project-content {
+        min-width: 0;
+      }
+
+      .project-gallery .project-preview {
+        width: 100%;
+        height: 270px;
+        min-height: 0;
+        align-self: center;
+      }
+
+      .project-preview img {
+        object-position: center top;
+      }
+
+      @media (max-width: 1099px) {
+        .profile-intro {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .experience-panel {
+          border-top: 1px solid var(--line);
+          border-left: 0;
+          padding: 34px 0 0;
+        }
+
+        #experience .experience-row {
+          grid-template-columns: 18px minmax(150px, 190px) 1px minmax(0, 1fr);
+          gap: 24px;
+        }
+
+        .project-gallery .project-row {
+          height: 340px;
+          min-height: 340px;
+          max-height: 340px;
+          grid-template-columns: minmax(0, 1fr) 36%;
+          gap: 30px;
+          padding: 28px;
+        }
+
+        .project-gallery .project-preview {
+          height: 240px;
+        }
+      }
+
+      @media (max-width: 759px) {
+        .profile-overview {
+          padding: 64px 0 48px;
+        }
+
+        .profile-intro {
+          gap: 32px;
+          padding-bottom: 44px;
+        }
+
+        .experience-panel {
+          padding-top: 30px;
+        }
+
+        #experience .experience-row {
+          grid-template-columns: 18px minmax(0, 1fr);
+          gap: 0 16px;
+          padding-bottom: 28px;
+        }
+
+        #experience .experience-row .row-meta,
+        #experience .experience-row .row-main {
+          grid-column: 2;
+        }
+
+        #experience .experience-row .row-main {
+          margin-top: 8px;
+        }
+
+        #experience .experience-marker {
+          grid-row: 1 / span 2;
+        }
+
+        #experience .experience-divider {
+          display: none;
+        }
+
+        .project-gallery .project-row {
+          height: 570px;
+          min-height: 570px;
+          max-height: 570px;
+          grid-template-columns: 1fr;
+          grid-template-rows: minmax(0, 1fr) 220px;
+          gap: 24px;
+          padding: 24px;
+        }
+
+        .project-gallery .project-preview {
+          height: 220px;
+        }
+      }
+
+      @media (max-width: 519px) {
+        .wrap {
+          width: min(100% - 32px, var(--max));
+        }
+
+        .identity-row {
+          gap: 18px;
+        }
+
+        .identity-row .profile-portrait {
+          width: 74px;
+        }
+
+        .profile-intro .identity-copy h1 {
+          font-size: clamp(3rem, 15vw, 4rem);
+        }
+
+        .profile-intro .hero-copy {
+          font-size: 1rem;
+          line-height: 1.75;
+        }
+
+        #stack .stack-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #certifications .cert-card {
+          grid-template-columns: 62px minmax(0, 1fr);
+        }
+
+        #certifications .cert-card h3 {
+          grid-column: 1 / -1;
+        }
+
+        .project-gallery .project-row {
+          height: 600px;
+          min-height: 600px;
+          max-height: 600px;
+          grid-template-rows: minmax(0, 1fr) 190px;
+          padding: 20px;
+        }
+
+        .project-gallery .project-preview {
+          height: 190px;
+        }
+      }
+
+      /* Overall spacing and reading rhythm */
+      body {
+        line-height: 1.62;
+      }
+
+      .profile-overview {
+        padding: 88px 0 64px;
+      }
+
+      .profile-intro {
+        gap: 48px;
+        padding-bottom: 44px;
+      }
+
+      .profile-intro .hero-copy {
+        line-height: 1.72;
+      }
+
+      #stack,
+      #certifications {
+        padding: 28px 0;
+      }
+
+      .projects-section {
+        padding-top: 68px;
+      }
+
+      .projects-section .section-head {
+        margin-bottom: 32px;
+      }
+
+      .project-gallery {
+        gap: 16px;
+      }
+
+      .project-gallery .project-row {
+        padding: 30px;
+      }
+
+      .project-gallery .row-main p {
+        line-height: 1.68;
+      }
+
+      @media (max-width: 1099px) {
+        .profile-overview {
+          padding: 76px 0 56px;
+        }
+
+        .profile-intro {
+          gap: 36px;
+        }
+      }
+
+      @media (max-width: 759px) {
+        .profile-overview {
+          padding: 58px 0 44px;
+        }
+
+        .profile-intro {
+          gap: 28px;
+          padding-bottom: 40px;
+        }
+
+        .projects-section {
+          padding-top: 56px;
+        }
+
+        .project-gallery .project-row {
+          padding: 22px;
+        }
+      }
+
+      @media (max-width: 519px) {
+        .project-gallery .project-row {
+          padding: 20px;
+        }
+      }
+
+      /* Profile overview redesign */
+      .site-header .wrap,
+      .profile-overview > .wrap {
+        width: min(calc(100% - 64px), 1280px);
+      }
+
+      .site-header .nav {
+        min-height: 74px;
+      }
+
+      .site-header .brand {
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .site-header .nav-links {
+        gap: 38px;
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .site-header .nav-links a {
+        position: relative;
+        min-height: 74px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .site-header .nav-links a.is-active {
+        color: var(--text);
+      }
+
+      .site-header .nav-links a.is-active::after {
+        position: absolute;
+        right: 0;
+        bottom: 14px;
+        left: 0;
+        height: 2px;
+        background: var(--text);
+        content: "";
+      }
+
+      .profile-overview {
+        padding: 54px 0 0;
+      }
+
+      .profile-intro {
+        grid-template-columns: minmax(0, 1.62fr) minmax(360px, 1fr);
+        gap: 0;
+        align-items: stretch;
+        padding-bottom: 50px;
+      }
+
+      .profile-summary {
+        padding: 8px 56px 0 8px;
+      }
+
+      .identity-row {
+        align-items: center;
+        gap: 30px;
+      }
+
+      .identity-row .profile-portrait {
+        width: 158px;
+        border-radius: 50%;
+      }
+
+      .identity-copy .eyebrow {
+        margin-bottom: 10px;
+        color: #68707c;
+        font-size: 14px;
+      }
+
+      .profile-intro .identity-copy h1 {
+        font-size: clamp(4rem, 6.3vw, 6.1rem);
+        line-height: 0.98;
+      }
+
+      .hero-statement {
+        max-width: 720px;
+        margin: 34px 0 16px;
+        font-size: clamp(1.3rem, 2vw, 1.7rem);
+        font-weight: 520;
+        line-height: 1.52;
+      }
+
+      .hero-subcopy {
+        max-width: 680px;
+        margin: 0 0 30px;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.35vw, 1.15rem);
+        line-height: 1.7;
+      }
+
+      .profile-summary .actions {
+        gap: 12px;
+      }
+
+      .profile-summary .button {
+        min-width: 128px;
+        min-height: 46px;
+      }
+
+      .experience-panel {
+        border-left: 1px solid var(--line);
+        padding: 6px 8px 0 44px;
+      }
+
+      .experience-panel .profile-band-head {
+        margin-bottom: 38px;
+      }
+
+      .experience-panel h2 {
+        font-size: 26px;
+      }
+
+      #experience .experience-list {
+        gap: 0;
+      }
+
+      #experience .experience-row {
+        grid-template-columns: 18px minmax(0, 1fr);
+        gap: 28px;
+        min-height: 0;
+        padding: 0 0 58px;
+      }
+
+      #experience .experience-row:last-child {
+        padding-bottom: 0;
+      }
+
+      .experience-marker {
+        grid-column: 1;
+        width: 18px;
+        min-height: 94px;
+      }
+
+      .experience-marker::before {
+        top: 4px;
+        left: 1px;
+        width: 16px;
+        height: 16px;
+        border-width: 2px;
+      }
+
+      .experience-row:not(:last-child) .experience-marker::after {
+        top: 20px;
+        bottom: -62px;
+      }
+
+      .experience-entry {
+        min-width: 0;
+        padding-top: 0;
+      }
+
+      #experience .experience-entry .row-meta {
+        margin-bottom: 10px;
+        padding: 0;
+        color: #8a919c;
+        font-size: 14px;
+      }
+
+      #experience .experience-entry h3 {
+        margin: 0 0 4px;
+        font-size: 20px;
+        line-height: 1.35;
+      }
+
+      #experience .experience-entry p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .profile-document {
+        display: grid;
+        grid-template-columns: minmax(0, 1.62fr) minmax(360px, 1fr);
+        border-top: 1px solid var(--line-strong);
+        border-bottom: 1px solid var(--line);
+      }
+
+      #stack,
+      #certifications {
+        grid-column: auto;
+        padding: 38px 0 42px;
+        border-bottom: 0;
+      }
+
+      #stack {
+        padding-right: 44px;
+      }
+
+      #certifications {
+        border-left: 1px solid var(--line);
+        padding-left: 44px;
+      }
+
+      #stack .profile-band-head,
+      #certifications .profile-band-head {
+        margin-bottom: 24px;
+      }
+
+      #stack h2,
+      #certifications h2 {
+        font-size: 24px;
+      }
+
+      #stack .stack-list,
+      #certifications .cert-list {
+        border-top: 1px solid var(--line);
+      }
+
+      #stack .stack-row {
+        grid-template-columns: 148px minmax(0, 1fr);
+        gap: 24px;
+        border-bottom: 1px solid var(--line);
+        padding: 14px 0;
+      }
+
+      #stack .stack-row:first-child {
+        padding-top: 14px;
+      }
+
+      #stack .stack-row:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      #stack .row-meta {
+        color: #8a919c;
+        font-size: 13px;
+      }
+
+      .stack-values {
+        min-width: 0;
+        color: #25262a;
+        font-size: 14px;
+        font-weight: 620;
+        line-height: 1.65;
+      }
+
+      #certifications .cert-list {
+        display: block;
+      }
+
+      #certifications .cert-card {
+        grid-template-columns: 88px minmax(0, 1fr);
+        gap: 20px;
+        border-bottom: 1px solid var(--line);
+        padding: 18px 0;
+      }
+
+      #certifications .cert-card:first-child {
+        padding-top: 18px;
+      }
+
+      #certifications .cert-card:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      #certifications .cert-code {
+        color: #8a919c;
+        font-size: 13px;
+      }
+
+      #certifications .cert-card h3 {
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      @media (max-width: 1040px) {
+        .profile-intro {
+          grid-template-columns: minmax(0, 1.45fr) minmax(330px, 1fr);
+        }
+
+        .profile-summary {
+          padding-right: 40px;
+        }
+
+        .identity-row .profile-portrait {
+          width: 126px;
+        }
+
+        .profile-document {
+          grid-template-columns: minmax(0, 1.45fr) minmax(330px, 1fr);
+        }
+      }
+
+      @media (max-width: 860px) {
+        .profile-intro {
+          grid-template-columns: 1fr;
+          gap: 42px;
+        }
+
+        .profile-summary {
+          padding-right: 0;
+        }
+
+        .experience-panel {
+          border-top: 1px solid var(--line);
+          border-left: 0;
+          padding: 34px 0 0;
+        }
+
+        #experience .experience-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 28px;
+        }
+
+        #experience .experience-row {
+          padding-bottom: 0;
+        }
+
+        .experience-row:not(:last-child) .experience-marker::after {
+          display: none;
+        }
+
+        .profile-document {
+          grid-template-columns: 1fr;
+        }
+
+        #stack {
+          padding-right: 0;
+        }
+
+        #certifications {
+          border-top: 1px solid var(--line);
+          border-left: 0;
+          padding-left: 0;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .site-header .wrap,
+        .profile-overview > .wrap {
+          width: min(calc(100% - 32px), 1280px);
+        }
+
+        .site-header .nav {
+          min-height: 62px;
+          align-items: center;
+          flex-direction: row;
+          gap: 18px;
+          padding: 0;
+        }
+
+        .site-header .brand {
+          font-size: 18px;
+        }
+
+        .site-header .nav-links {
+          width: auto;
+          gap: 15px;
+          overflow: visible;
+          padding: 0;
+          font-size: 12px;
+        }
+
+        .site-header .nav-links a {
+          min-height: 62px;
+        }
+
+        .site-header .nav-links a.is-active::after {
+          bottom: 10px;
+        }
+
+        .profile-overview {
+          padding-top: 34px;
+        }
+
+        .profile-intro {
+          gap: 34px;
+          padding-bottom: 38px;
+        }
+
+        .identity-row {
+          gap: 18px;
+        }
+
+        .identity-row .profile-portrait {
+          width: 88px;
+        }
+
+        .identity-copy .eyebrow {
+          margin-bottom: 6px;
+          font-size: 12px;
+        }
+
+        .profile-intro .identity-copy h1 {
+          font-size: clamp(3rem, 15vw, 4rem);
+        }
+
+        .hero-statement {
+          margin-top: 28px;
+          font-size: 1.2rem;
+          line-height: 1.58;
+        }
+
+        .hero-subcopy {
+          margin-bottom: 24px;
+          font-size: 0.95rem;
+        }
+
+        .hero-statement br,
+        .hero-subcopy br {
+          display: none;
+        }
+
+        .profile-summary .actions {
+          flex-direction: row;
+        }
+
+        .profile-summary .button {
+          width: auto;
+          min-width: 116px;
+        }
+
+        .experience-panel h2,
+        #stack h2,
+        #certifications h2 {
+          font-size: 22px;
+        }
+
+        #experience .experience-list {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        #experience .experience-row {
+          grid-template-columns: 18px minmax(0, 1fr);
+          gap: 18px;
+        }
+
+        #experience .experience-row .experience-entry {
+          grid-column: 2;
+          margin-top: 0;
+        }
+
+        #stack,
+        #certifications {
+          padding: 30px 0 34px;
+        }
+
+        #stack .stack-row {
+          grid-template-columns: 104px minmax(0, 1fr);
+          gap: 16px;
+        }
+
+        #certifications .cert-card {
+          grid-template-columns: 68px minmax(0, 1fr);
+          gap: 14px;
+        }
+      }
+
+      @media (max-width: 430px) {
+        .site-header .nav-links {
+          gap: 11px;
+          font-size: 11px;
+        }
+
+        .profile-summary .actions {
+          width: 100%;
+        }
+
+        .profile-summary .button {
+          flex: 1 1 0;
+          min-width: 0;
+        }
+
+        #stack .stack-row {
+          grid-template-columns: 1fr;
+          gap: 5px;
+        }
+      }
+
     </style>
   </head>
   <body>
     <header class="site-header">
       <nav class="wrap nav" aria-label="주요 섹션">
-        <a class="brand" href="#top">Kim Minseo</a>
+        <a class="brand" href="#top">김민서</a>
         <div class="nav-links">
+          <a class="is-active" href="#top">Home</a>
+          <a href="#profile">About</a>
           <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#stack">Stack</a>
-          <a href="#certifications">Certifications</a>
-          <a href="#contact">Contact</a>
+          <a href="mailto:kms.dev.data@gmail.com">Contact</a>
         </div>
       </nav>
     </header>
 
     <main id="top">
-      <section class="hero">
-        <div class="wrap hero-layout">
-          <div>
-            <p class="eyebrow">Backend Developer</p>
-            <div class="hero-title-row">
-              <h1>김민서</h1>
-              <div class="mobile-profile-photo" aria-hidden="true">
-                <img src="assets/profile.png" alt="" />
+      <section id="profile" class="profile-overview">
+        <div class="wrap">
+          <div class="profile-intro">
+            <div class="profile-summary">
+              <div class="identity-row">
+                <div class="profile-portrait">
+                  <img src="assets/profile.png" alt="김민서 프로필 사진" />
+                </div>
+                <div class="identity-copy">
+                  <p class="eyebrow">Backend Developer</p>
+                  <h1>김민서</h1>
+                </div>
+              </div>
+              <p class="hero-statement">
+                기술을 사용하는 데 그치지 않고,<br />왜 그렇게 동작하는지 이해하려는 백엔드
+                개발자입니다.
+              </p>
+              <p class="hero-subcopy">
+                서비스의 설계부터 배포와 운영까지 직접 경험하며<br />더 나은 구조와 설계를
+                고민하고 있습니다.
+              </p>
+              <div class="actions">
+                <a
+                  class="button primary"
+                  href="https://github.com/kmsdevdata-sketch"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.8 1.4 3.5 1.1.1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"
+                    />
+                  </svg>
+                  GitHub
+                </a>
+                <a class="button" href="mailto:kms.dev.data@gmail.com">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 5.5h16v13H4z" />
+                    <path d="m4.5 6 7.5 6 7.5-6" />
+                  </svg>
+                  Email
+                </a>
               </div>
             </div>
-            <p class="hero-copy">
-              기술을 사용하는 것보다, 왜 그렇게 동작하는지를 이해하는 백엔드 개발자입니다.
-              서비스의 설계부터 배포와 운영까지 직접 경험하며 기술의 본질을 쌓아가고
-              있습니다.
-            </p>
-            <div class="actions">
-              <a
-                class="button primary"
-                href="https://github.com/kmsdevdata-sketch"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              <a class="button" href="mailto:kms.dev.data@gmail.com">Email</a>
-            </div>
+
+            <section id="experience" class="experience-panel">
+              <div class="profile-band-head">
+                <h2>Experience</h2>
+              </div>
+              <div class="experience-list">
+                <article class="experience-row">
+                  <span class="experience-marker" aria-hidden="true"></span>
+                  <div class="experience-entry">
+                    <div class="row-meta">2026.03 - 2026.05</div>
+                    <h3>SWYP 웹 13기</h3>
+                    <p>Backend Team Lead</p>
+                  </div>
+                </article>
+                <article class="experience-row">
+                  <span class="experience-marker" aria-hidden="true"></span>
+                  <div class="experience-entry">
+                    <div class="row-meta">2026.07 - 2026.09</div>
+                    <h3>VioletPay</h3>
+                    <p>Project Intern · Backend</p>
+                  </div>
+                </article>
+              </div>
+            </section>
           </div>
 
-          <aside class="profile-card" aria-label="프로필 요약">
-            <div class="profile-photo">
-              <img src="assets/profile.png" alt="김민서 프로필 사진" />
-            </div>
-            <div class="hero-meta">
-              <div class="meta-row">
-                <span>Name</span>
-                <strong>김민서</strong>
+          <div class="profile-document">
+            <section id="stack" class="profile-band">
+              <div class="profile-band-head">
+                <span class="profile-band-number">03</span>
+                <h2>Backend Stack</h2>
               </div>
-              <div class="meta-row">
-                <span>Birth</span>
-                <strong>2003년생</strong>
+              <div class="stack-list">
+                <div class="stack-row">
+                  <div class="row-meta">Language</div>
+                  <div class="stack-values">Java</div>
+                </div>
+                <div class="stack-row">
+                  <div class="row-meta">Backend</div>
+                  <div class="stack-values">Spring Boot · Spring Security · Spring Data JPA · Hibernate</div>
+                </div>
+                <div class="stack-row">
+                  <div class="row-meta">Database</div>
+                  <div class="stack-values">PostgreSQL · MySQL · Flyway</div>
+                </div>
+                <div class="stack-row">
+                  <div class="row-meta">Infrastructure</div>
+                  <div class="stack-values">AWS · ECS · RDS · S3 · CloudFront · Docker · Nginx · GitHub Actions</div>
+                </div>
               </div>
-              <div class="meta-row">
-                <span>Goal</span>
-                <strong>백엔드 개발자</strong>
+            </section>
+
+            <section id="certifications" class="profile-band">
+              <div class="profile-band-head">
+                <span class="profile-band-number">04</span>
+                <h2>Certifications</h2>
               </div>
-              <div class="meta-row">
-                <span>Education</span>
-                <strong>방송통신대학교 컴퓨터과학과 재학</strong>
+              <div class="cert-list">
+                <article class="cert-card">
+                  <div class="cert-code">SAA-C03</div>
+                  <h3>AWS Certified Solutions Architect - Associate</h3>
+                </article>
+                <article class="cert-card">
+                  <div class="cert-code">CLF-C02</div>
+                  <h3>AWS Certified Cloud Practitioner</h3>
+                </article>
               </div>
-            </div>
-          </aside>
+            </section>
+
+          </div>
         </div>
       </section>
 
-      <section id="projects">
+      <section id="projects" class="projects-section">
         <div class="wrap">
           <div class="section-head">
             <p class="section-label">01</p>
             <h2>Projects</h2>
           </div>
 
-          <div class="project-list">
-            <article class="project-row">
-              <a
-                class="project-card-link"
-                href="projects/oneasset.html"
-                aria-label="OneAsset 상세 페이지로 이동"
-              ></a>
-              <div class="row-meta">Personal Project</div>
-              <div class="row-main">
-                <div class="project-title-bar">
-                  <h3>OneAsset</h3>
-                  <div class="project-title-actions" aria-label="OneAsset 프로젝트 링크">
-                    <a
-                      class="project-link"
-                      href="https://www.oneasset.tech/"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      서비스
-                    </a>
-                    <a
-                      class="project-link"
-                      href="https://github.com/kmsdevdata-sketch/oneasset-api.git"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      GitHub
-                    </a>
-                    <a class="detail-link" href="projects/oneasset.html">자세히 보기</a>
+          <div class="project-gallery">
+            <article class="project-row" data-project-url="projects/wihada.html">
+              <button class="project-open" type="button" aria-label="위하다 프로젝트 미리보기"></button>
+              <div class="project-content">
+                <div class="row-meta">Project Internship · Team Project</div>
+                <div class="row-main">
+                  <div class="project-title-bar">
+                    <h3>위하다</h3>
+                    <div class="project-title-actions" aria-label="위하다 프로젝트 링크">
+                      <a class="project-link" href="https://www.wihada.com" target="_blank" rel="noreferrer">구매자</a>
+                      <a class="project-link" href="https://seller.wihada.com" target="_blank" rel="noreferrer">판매자</a>
+                      <a class="project-link" href="https://github.com/kmsdevdata-sketch/wihada-api" target="_blank" rel="noreferrer">GitHub</a>
+                      <a class="project-link" href="assets/wihada/team-presentation-2026-09-18.pdf" target="_blank" rel="noreferrer">프로젝트 소개서</a>
+                      <a class="detail-link" href="projects/wihada.html">자세히 보기</a>
+                    </div>
+                  </div>
+                  <p>
+                    SNS 소셜 셀러의 주문 접수, 상담, 결제, 픽업과 환불을 하나의 상담
+                    흐름으로 관리하는 주문 관리 플랫폼입니다.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Java 25</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Redis</span>
+                    <span class="tag">WebSocket</span>
+                    <span class="tag">AWS</span>
                   </div>
                 </div>
-                <p>
-                  개발자용 클라우드 에셋 딜리버리 API입니다. API Key 기반 업로드,
-                  private S3 저장, SQS/Lambda 비동기 변환, CloudFront delivery 흐름을
-                  구성했습니다.
-                </p>
-                <div class="tags">
-                  <span class="tag">Java</span>
-                  <span class="tag">Spring Boot</span>
-                  <span class="tag">Hexagonal Architecture</span>
-                  <span class="tag">AWS</span>
-                  <span class="tag">ECS</span>
-                  <span class="tag">S3</span>
-                  <span class="tag">CloudFront</span>
-                </div>
+              </div>
+              <div class="project-preview" aria-hidden="true">
+                <img src="assets/wihada/thumbnail.png" alt="" />
               </div>
             </article>
 
-            <article class="project-row">
-              <a
-                class="project-card-link"
-                href="projects/pium.html"
-                aria-label="Pium 상세 페이지로 이동"
-              ></a>
-              <div class="row-meta">Personal Project</div>
-              <div class="row-main">
-                <div class="project-title-bar">
-                  <h3>Pium</h3>
-                  <div class="project-title-actions" aria-label="Pium 프로젝트 링크">
-                    <a
-                      class="project-link"
-                      href="https://www.pium.app/"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      서비스
-                    </a>
-                    <a
-                      class="project-link"
-                      href="https://github.com/kmsdevdata-sketch/pium-api.git"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      GitHub
-                    </a>
-                    <a class="detail-link" href="projects/pium.html">자세히 보기</a>
+            <article class="project-row" data-project-url="projects/oneasset.html">
+              <button class="project-open" type="button" aria-label="OneAsset 프로젝트 미리보기"></button>
+              <div class="project-content">
+                <div class="row-meta">Personal Project</div>
+                <div class="row-main">
+                  <div class="project-title-bar">
+                    <h3>OneAsset</h3>
+                    <div class="project-title-actions" aria-label="OneAsset 프로젝트 링크">
+                      <a class="project-link" href="https://www.oneasset.tech/" target="_blank" rel="noreferrer">서비스</a>
+                      <a class="project-link" href="https://github.com/kmsdevdata-sketch/oneasset-api.git" target="_blank" rel="noreferrer">GitHub</a>
+                      <a class="detail-link" href="projects/oneasset.html">자세히 보기</a>
+                    </div>
+                  </div>
+                  <p>
+                    개발자용 클라우드 에셋 딜리버리 API입니다. API Key 기반 업로드,
+                    private S3 저장, SQS/Lambda 비동기 변환, CloudFront delivery 흐름을
+                    구성했습니다.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">Hexagonal Architecture</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">ECS</span>
+                    <span class="tag">S3</span>
+                    <span class="tag">CloudFront</span>
                   </div>
                 </div>
-                <p>
-                  피부 진단 서비스입니다. Toss Mini App과 웹 서비스를 운영했고, Docker,
-                  GitHub Actions, Nginx 기반 배포 흐름을 다뤘습니다.
-                </p>
-                <div class="tags">
-                  <span class="tag">Spring Boot</span>
-                  <span class="tag">OAuth</span>
-                  <span class="tag">Docker</span>
-                  <span class="tag">GitHub Actions</span>
-                  <span class="tag">Nginx</span>
-                  <span class="tag">DigitalOcean</span>
-                </div>
               </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="experience">
-        <div class="wrap">
-          <div class="section-head">
-            <p class="section-label">02</p>
-            <h2>Experience</h2>
-          </div>
-
-          <div class="experience-list">
-            <article class="experience-row">
-              <div class="row-meta">2026.03 - 2026.05</div>
-              <div class="row-main">
-                <div class="title-with-tags">
-                  <h3>SWYP 웹 13기</h3>
-                  <span class="tag">백엔드 팀장</span>
-                </div>
+              <div class="project-preview" aria-hidden="true">
+                <img src="assets/oneasset/project-detail.png" alt="" />
               </div>
             </article>
 
-            <article class="experience-row">
-              <div class="row-meta">2026.07 - 현재</div>
-              <div class="row-main">
-                <div class="title-with-tags">
-                  <h3>프로젝트 인턴 - 바이올렛 페이</h3>
-                  <span class="tag">참여 중</span>
+            <article class="project-row" data-project-url="projects/pium.html">
+              <button class="project-open" type="button" aria-label="Pium 프로젝트 미리보기"></button>
+              <div class="project-content">
+                <div class="row-meta">Personal Project</div>
+                <div class="row-main">
+                  <div class="project-title-bar">
+                    <h3>Pium</h3>
+                    <div class="project-title-actions" aria-label="Pium 프로젝트 링크">
+                      <a class="project-link" href="https://www.pium.app/" target="_blank" rel="noreferrer">서비스</a>
+                      <a class="project-link" href="https://github.com/kmsdevdata-sketch/pium-api.git" target="_blank" rel="noreferrer">GitHub</a>
+                      <a class="detail-link" href="projects/pium.html">자세히 보기</a>
+                    </div>
+                  </div>
+                  <p>
+                    피부 진단 서비스입니다. Toss Mini App과 웹 서비스를 운영했고, Docker,
+                    GitHub Actions, Nginx 기반 배포 흐름을 다뤘습니다.
+                  </p>
+                  <div class="tags">
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">OAuth</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">GitHub Actions</span>
+                    <span class="tag">Nginx</span>
+                    <span class="tag">DigitalOcean</span>
+                  </div>
                 </div>
+              </div>
+              <div class="project-preview" aria-hidden="true">
+                <img src="assets/pium/pium_web_home.png" alt="" />
               </div>
             </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="stack">
-        <div class="wrap">
-          <div class="section-head">
-            <p class="section-label">03</p>
-            <h2>Backend Stack</h2>
-          </div>
-
-          <div class="stack-list">
-            <div class="stack-row">
-              <div class="row-meta">Language</div>
-              <div class="row-main">
-                <h3>Java</h3>
-              </div>
-            </div>
-
-            <div class="stack-row">
-              <div class="row-meta">Backend</div>
-              <div class="row-main">
-                <div class="tags">
-                  <span class="tag">Spring Boot</span>
-                  <span class="tag">Spring Security</span>
-                  <span class="tag">Spring Data JPA</span>
-                  <span class="tag">Hibernate</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="stack-row">
-              <div class="row-meta">Database</div>
-              <div class="row-main">
-                <div class="tags">
-                  <span class="tag">PostgreSQL</span>
-                  <span class="tag">MySQL</span>
-                  <span class="tag">Flyway</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="stack-row">
-              <div class="row-meta">Cloud / Infra</div>
-              <div class="row-main">
-                <div class="tags">
-                  <span class="tag">AWS</span>
-                  <span class="tag">ECS</span>
-                  <span class="tag">RDS</span>
-                  <span class="tag">S3</span>
-                  <span class="tag">CloudFront</span>
-                  <span class="tag">Docker</span>
-                  <span class="tag">Nginx</span>
-                  <span class="tag">GitHub Actions</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="certifications">
-        <div class="wrap">
-          <div class="section-head">
-            <p class="section-label">04</p>
-            <h2>Certifications</h2>
-          </div>
-
-          <div class="cert-list">
-            <article class="cert-card">
-              <div class="cert-provider">AWS</div>
-              <div class="cert-code">SAA-C03</div>
-              <h3>AWS Certified Solutions Architect - Associate</h3>
-            </article>
-
-            <article class="cert-card">
-              <div class="cert-provider">AWS</div>
-              <div class="cert-code">CLF-C02</div>
-              <h3>AWS Certified Cloud Practitioner</h3>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="contact-section">
-        <div class="wrap">
-          <div class="section-head">
-            <p class="section-label">05</p>
-            <h2>Contact</h2>
-          </div>
-
-          <div class="contact-panel">
-            <div class="actions">
-              <a
-                class="button primary"
-                href="https://github.com/kmsdevdata-sketch"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              <a class="button" href="mailto:kms.dev.data@gmail.com">Email</a>
-            </div>
           </div>
         </div>
       </section>
     </main>
+
+    <dialog class="project-modal" aria-label="프로젝트 상세">
+      <div class="project-modal-shell">
+        <div class="project-modal-toolbar">
+          <div class="project-modal-heading">
+            <strong>Project</strong>
+            <span>Case Study</span>
+          </div>
+          <button class="modal-close" type="button" aria-label="프로젝트 상세 닫기">×</button>
+        </div>
+        <div class="project-frame-loading" aria-live="polite">프로젝트를 불러오는 중</div>
+        <iframe class="project-frame" title="프로젝트 상세" loading="eager"></iframe>
+      </div>
+    </dialog>
 
     <footer class="site-footer">
       <div class="wrap footer-inner">
@@ -923,5 +2344,61 @@
         <span>Backend Developer Portfolio</span>
       </div>
     </footer>
+
+    <script>
+      const projectModal = document.querySelector(".project-modal");
+      const projectFrame = projectModal.querySelector(".project-frame");
+      const modalClose = projectModal.querySelector(".modal-close");
+      const modalShell = projectModal.querySelector(".project-modal-shell");
+      const modalTitle = projectModal.querySelector(".project-modal-heading strong");
+      const modalLoading = projectModal.querySelector(".project-frame-loading");
+      let activeProjectTrigger = null;
+
+      function openProjectModal(project) {
+        const projectTitle = project.querySelector("h3").textContent;
+
+        projectFrame.src = project.dataset.projectUrl;
+        projectFrame.title = `${projectTitle} 프로젝트 상세`;
+        modalTitle.textContent = projectTitle;
+        modalShell.classList.remove("is-ready");
+        modalLoading.hidden = false;
+        activeProjectTrigger = project.querySelector(".project-open");
+        projectModal.showModal();
+      }
+
+      projectFrame.addEventListener("load", () => {
+        const frameDocument = projectFrame.contentDocument;
+
+        if (frameDocument) {
+          frameDocument.documentElement.classList.add("in-project-modal");
+          frameDocument.querySelectorAll("img").forEach((image) => {
+            image.loading = "lazy";
+            image.decoding = "async";
+          });
+        }
+
+        modalShell.classList.add("is-ready");
+        modalLoading.hidden = true;
+      });
+
+      document.querySelectorAll(".project-row").forEach((project) => {
+        project.querySelector(".project-open").addEventListener("click", () => {
+          openProjectModal(project);
+        });
+      });
+
+      modalClose.addEventListener("click", () => projectModal.close());
+
+      projectModal.addEventListener("click", (event) => {
+        if (event.target === projectModal) {
+          projectModal.close();
+        }
+      });
+
+      projectModal.addEventListener("close", () => {
+        projectFrame.removeAttribute("src");
+        activeProjectTrigger?.focus();
+      });
+    </script>
   </body>
 </html>

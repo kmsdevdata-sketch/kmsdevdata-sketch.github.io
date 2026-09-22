@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Domain & Data Model 섹션입니다." /><title>위하다 | Domain & Data Model</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="domain-data-model.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name">위하다</span><div class="room-list"></div></aside>
+      <section class="room-stage"><div><span class="room-number">06</span><h1>Domain &amp; Data Model</h1></div><div class="room-content">
+        <div class="media-stack">
+          <div class="media-section"><h2>사용자 · 스토어 · 에셋</h2><figure class="diagram"><a href="../../assets/wihada/erd-user-store-asset.png" target="_blank" rel="noreferrer"><img src="../../assets/wihada/erd-user-store-asset.png" alt="위하다 사용자 스토어 에셋 ERD" /></a></figure></div>
+          <div class="media-section"><h2>문의 · 채팅 · 주문서</h2><figure class="diagram"><a href="../../assets/wihada/erd-inquiry-chat-submission.png" target="_blank" rel="noreferrer"><img src="../../assets/wihada/erd-inquiry-chat-submission.png" alt="위하다 문의 채팅 주문서 ERD" /></a></figure></div>
+          <div class="media-section"><h2>결제 · 주문 · 환불</h2><figure class="diagram"><a href="../../assets/wihada/erd-payment-order-refund.png" target="_blank" rel="noreferrer"><img src="../../assets/wihada/erd-payment-order-refund.png" alt="위하다 결제 주문 환불 ERD" /></a></figure></div>
+        </div>
+        <div class="content-grid">
+          <div class="content-block"><h2>Core Relationship</h2><p>Inquiry는 구매자와 스토어 사이의 지속되는 상담 공간입니다. OrderFormSubmission은 제출 시점의 답변과 이미지를 보존하고, OrderConfirmation은 상담 결과로 확정된 메뉴, 금액과 픽업 조건을 저장합니다.</p></div>
+          <div class="content-block"><h2>Payment &amp; Timeline</h2><p>PaymentAttempt가 내부 주문확인서와 외부 결제 요청을 연결하고 결제 완료 후 Order가 상태를 관리합니다. ChatTimelineItem은 메시지와 주문 이벤트를 하나의 시간순 타임라인으로 제공합니다.</p></div>
+          <div class="content-block"><h2>Snapshot</h2><p>변경 가능한 주문서 양식, 옵션 가격, 스토어명과 참조 이미지는 제출 또는 발행 시점에 스냅샷으로 저장해 과거 주문이 현재 데이터 변경의 영향을 받지 않도록 했습니다.</p></div>
+          <div class="content-block"><h2>State Separation</h2><p>문의방의 처리 상태, 개별 주문서 확인 여부, 결제 및 환불 상태를 독립적으로 관리합니다. 현재 submission 식별값으로 과거 주문 이벤트가 새로운 상담 상태를 변경하지 않도록 했습니다.</p></div>
+        </div>
+      </div></section>
+    </div></div><nav class="wrap room-actions" aria-label="이전 다음 섹션"></nav></main>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>
