@@ -1776,6 +1776,44 @@
         line-height: 1.55;
       }
 
+      .selected-activities {
+        margin-top: 34px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+
+      .selected-activities h3 {
+        margin: 0 0 18px;
+        font-size: 15px;
+      }
+
+      .activity-entry {
+        display: grid;
+        grid-template-columns: 86px minmax(0, 1fr);
+        gap: 14px;
+      }
+
+      .activity-date {
+        padding-top: 2px;
+        color: #8a919c;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .activity-copy strong {
+        display: block;
+        font-size: 16px;
+        line-height: 1.4;
+      }
+
+      .activity-copy p {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
       .profile-document {
         display: grid;
         grid-template-columns: minmax(0, 1.62fr) minmax(360px, 1fr);
@@ -2078,6 +2116,372 @@
         }
       }
 
+      @media print {
+        @page {
+          size: A4 portrait;
+          margin: 11mm 12mm 13mm;
+        }
+
+        :root {
+          --line: #dedee1;
+          --line-strong: #c9c9ce;
+        }
+
+        html {
+          scroll-behavior: auto;
+        }
+
+        body {
+          min-width: 0;
+          background: #ffffff;
+          color: #0f0f10;
+          font-size: 10pt;
+          line-height: 1.55;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        main {
+          overflow: visible;
+        }
+
+        .wrap,
+        .site-header .wrap,
+        .profile-overview > .wrap {
+          width: 100%;
+          max-width: none;
+        }
+
+        .site-header {
+          position: static;
+          border-bottom-color: var(--line-strong);
+          background: #ffffff;
+          backdrop-filter: none;
+        }
+
+        .site-header .nav {
+          min-height: 13mm;
+        }
+
+        .site-header .brand {
+          font-size: 13pt;
+        }
+
+        .site-header .nav-links {
+          gap: 20px;
+          font-size: 8.5pt;
+        }
+
+        .site-header .nav-links a {
+          min-height: 13mm;
+        }
+
+        .site-header .nav-links a.is-active::after {
+          bottom: 2mm;
+        }
+
+        .profile-overview {
+          min-height: 246mm;
+          padding: 9mm 0 0;
+          border-top: 0;
+        }
+
+        .profile-overview > .wrap {
+          min-height: 237mm;
+          display: grid;
+          grid-template-rows: minmax(0, 1fr) auto;
+        }
+
+        .profile-intro {
+          grid-template-columns: minmax(0, 1.52fr) minmax(220px, 1fr);
+          align-items: center;
+          padding: 7mm 0 12mm;
+          break-inside: avoid;
+        }
+
+        .profile-summary {
+          padding: 0 9mm 0 0;
+        }
+
+        .identity-row {
+          gap: 6mm;
+        }
+
+        .identity-row .profile-portrait {
+          width: 31mm;
+        }
+
+        .identity-copy .eyebrow {
+          margin-bottom: 1.5mm;
+          font-size: 8.5pt;
+        }
+
+        .profile-intro .identity-copy h1 {
+          font-size: 34pt;
+          line-height: 1;
+        }
+
+        .hero-statement {
+          margin: 7mm 0 3mm;
+          font-size: 14pt;
+          line-height: 1.5;
+        }
+
+        .hero-subcopy {
+          margin-bottom: 5mm;
+          font-size: 9.5pt;
+          line-height: 1.6;
+        }
+
+        .profile-summary .button {
+          min-width: 28mm;
+          min-height: 9mm;
+          padding: 0 3.5mm;
+          font-size: 8.5pt;
+        }
+
+        .experience-panel {
+          min-width: 0;
+          padding: 0 0 0 8mm;
+        }
+
+        .experience-panel .profile-band-head {
+          margin-bottom: 6mm;
+        }
+
+        .experience-panel h2,
+        #stack h2,
+        #certifications h2 {
+          font-size: 15pt;
+        }
+
+        #experience .experience-list {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+
+        #experience .experience-row {
+          grid-template-columns: 13px minmax(0, 1fr);
+          gap: 4mm;
+          padding-bottom: 8mm;
+        }
+
+        .experience-marker {
+          width: 13px;
+          min-height: 20mm;
+        }
+
+        .experience-marker::before {
+          left: 1px;
+          width: 11px;
+          height: 11px;
+        }
+
+        .experience-row:not(:last-child) .experience-marker::after {
+          top: 13px;
+          bottom: -9mm;
+        }
+
+        #experience .experience-entry .row-meta {
+          margin-bottom: 1.5mm;
+          font-size: 8pt;
+          white-space: nowrap;
+        }
+
+        #experience .experience-entry h3 {
+          font-size: 12pt;
+          white-space: nowrap;
+        }
+
+        #experience .experience-entry p {
+          font-size: 9pt;
+        }
+
+        .selected-activities {
+          margin-top: 3mm;
+          padding-top: 4mm;
+        }
+
+        .selected-activities h3 {
+          margin-bottom: 2.5mm;
+          font-size: 9pt;
+        }
+
+        .activity-entry {
+          grid-template-columns: 18mm minmax(0, 1fr);
+          gap: 3mm;
+        }
+
+        .activity-date {
+          font-size: 8pt;
+        }
+
+        .activity-copy strong {
+          font-size: 9.5pt;
+          white-space: nowrap;
+        }
+
+        .activity-copy p {
+          margin-top: 1mm;
+          font-size: 8pt;
+        }
+
+        .profile-document {
+          grid-template-columns: minmax(0, 1.52fr) minmax(220px, 1fr);
+          break-inside: avoid;
+        }
+
+        #stack,
+        #certifications {
+          padding-top: 7mm;
+          padding-bottom: 7mm;
+        }
+
+        #stack {
+          padding-right: 8mm;
+        }
+
+        #certifications {
+          padding-left: 8mm;
+        }
+
+        #stack .profile-band-head,
+        #certifications .profile-band-head {
+          margin-bottom: 4mm;
+        }
+
+        .profile-band-number {
+          display: none;
+        }
+
+        #stack .stack-row {
+          grid-template-columns: 25mm minmax(0, 1fr);
+          gap: 4mm;
+          padding: 2.6mm 0;
+        }
+
+        #stack .row-meta,
+        #certifications .cert-code {
+          font-size: 7.5pt;
+        }
+
+        .stack-values,
+        #certifications .cert-card h3 {
+          font-size: 8pt;
+          line-height: 1.5;
+        }
+
+        #certifications .cert-card {
+          grid-template-columns: 17mm minmax(0, 1fr);
+          gap: 3mm;
+          padding: 3.5mm 0;
+        }
+
+        .projects-section {
+          padding: 10mm 0 0;
+          border-top: 0;
+          background: #ffffff;
+          break-before: page;
+        }
+
+        .projects-section .section-head {
+          grid-template-columns: 13mm minmax(0, 1fr);
+          gap: 5mm;
+          margin-bottom: 7mm;
+        }
+
+        .projects-section .section-label {
+          font-size: 8pt;
+        }
+
+        .projects-section h2 {
+          font-size: 28pt;
+        }
+
+        .project-gallery {
+          gap: 4mm;
+        }
+
+        .project-gallery .project-row {
+          grid-template-columns: minmax(0, 1.4fr) minmax(70mm, 0.85fr);
+          gap: 6mm;
+          min-height: 0;
+          height: auto;
+          max-height: none;
+          border-color: var(--line-strong);
+          border-radius: 4px;
+          padding: 5mm;
+          break-inside: avoid;
+          box-shadow: none;
+        }
+
+        .project-gallery .project-content {
+          padding: 0;
+        }
+
+        .project-gallery .project-preview {
+          min-height: 0;
+          height: 43mm;
+        }
+
+        .project-gallery .project-preview img {
+          object-fit: cover;
+        }
+
+        .project-gallery .project-title-actions {
+          justify-content: flex-start;
+          gap: 2mm;
+          margin-top: 2mm;
+        }
+
+        .project-gallery .project-title-bar {
+          display: block;
+          margin-bottom: 3mm;
+        }
+
+        .project-gallery .project-link,
+        .project-gallery .detail-link,
+        .tag {
+          font-size: 7pt;
+        }
+
+        .project-gallery .project-link,
+        .tag {
+          min-height: 6mm;
+          padding: 0 2.5mm;
+        }
+
+        .project-gallery .row-main h3 {
+          font-size: 18pt;
+        }
+
+        .project-gallery .row-main p {
+          margin-bottom: 3mm;
+          font-size: 8.5pt;
+          line-height: 1.55;
+        }
+
+        .project-open,
+        .detail-link,
+        .project-modal {
+          display: none !important;
+        }
+
+        .site-footer {
+          padding: 6mm 0 0;
+          border-top: 0;
+          break-inside: avoid;
+        }
+
+        .footer-inner {
+          min-height: 0;
+          padding-top: 3mm;
+          border-top: 1px solid var(--line);
+          font-size: 7.5pt;
+        }
+      }
+
     </style>
   </head>
   <body>
@@ -2159,6 +2563,16 @@
                     <div class="row-meta">2026.07 - 2026.09</div>
                     <h3>VioletPay</h3>
                     <p>Project Intern · Backend</p>
+                  </div>
+                </article>
+              </div>
+              <div class="selected-activities">
+                <h3>Selected Activities</h3>
+                <article class="activity-entry">
+                  <div class="activity-date">2026.10</div>
+                  <div class="activity-copy">
+                    <strong>SoftBank Hackathon 2026</strong>
+                    <p>Backend Developer · 1-week Hackathon</p>
                   </div>
                 </article>
               </div>
