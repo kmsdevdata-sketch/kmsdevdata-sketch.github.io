@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="코로의 이사 Contribution and Scope" /><title>코로의 이사 | Contribution &amp; Scope</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="contribution-scope.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../koro-moving.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name" lang="ja">コロの引っ越し</span><div class="room-list"></div></aside><section class="room-stage"><div><span class="room-number">03</span><h1>Contribution &amp; Scope</h1></div><div class="room-content">
+      <p class="lede">배포 이후 사용자가 실제 서비스에 접속할 수 있는 상태까지 책임지는 영역을 담당했습니다. 아래는 직접 설계·구현한 기능과 그 구현 방식입니다.</p>
+      <div class="content-grid"><div class="content-block"><h2>배포 완료 판단</h2><ul class="section-list"><li><strong>기능</strong> 실제 서비스가 안정적으로 응답한 경우에만 배포 완료</li><li><strong>구현</strong> 최대 8회 확인하고 3회 연속 성공을 요구</li><li><strong>기능</strong> 중복 요청으로 같은 배포가 두 번 실행되는 상황 차단</li><li><strong>구현</strong> 요청 내용의 SHA-256 fingerprint와 Job ID 비교</li></ul></div><div class="content-block"><h2>온프레미스 배포</h2><ul class="section-list"><li><strong>기능</strong> 사용자 장비에서 동일한 컨테이너 이미지 실행</li><li><strong>구현</strong> Agent가 ECR 이미지를 digest 기준으로 내려받아 Docker Compose 실행</li><li><strong>기능</strong> 로컬 서비스를 외부에서 접근 가능한 URL로 제공</li><li><strong>구현</strong> 로컬 확인 후 Cloudflare Named Tunnel 연결</li></ul></div></div>
+      <div class="content-grid"><div class="content-block"><h2>복구와 환경 전환</h2><ul class="section-list"><li><strong>기능</strong> Agent 재시작 후 기존 컨테이너와 Tunnel 복구</li><li><strong>구현</strong> 실행 상태를 저장하고 서버의 목표 상태와 다시 비교</li><li><strong>기능</strong> 온프레미스 장애 시 검증된 AWS 환경으로 전환</li><li><strong>구현</strong> Agent 연결과 공개 URL 장애를 함께 확인한 뒤 origin 변경</li></ul></div><div class="content-block"><h2>검증</h2><ul class="section-list"><li>실제 PostgreSQL로 중복·동시 요청 제어 확인</li><li>AWS와 온프레미스 왕복 전환 자동 테스트</li><li>공개 URL 응답 시간과 동시 배포 시나리오 측정</li><li>실패 후 잠금과 실행 환경이 남지 않는지 확인</li></ul></div></div>
+      <p class="quote">Analyzer/IR, 초기 이미지 빌드·ECR 파이프라인, 전체 Terraform 구성과 프론트엔드는 다른 팀원의 구현입니다. 이 페이지는 코드와 PR 이력으로 확인되는 범위만 정리했습니다.</p>
+    </div></section></div></div><nav class="wrap room-actions"></nav></main><footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>

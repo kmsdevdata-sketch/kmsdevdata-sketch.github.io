@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="코로의 이사 System Architecture" /><title>코로의 이사 | System Architecture</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="system-architecture.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../koro-moving.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name" lang="ja">コロの引っ越し</span><div class="room-list"></div></aside><section class="room-stage"><div><span class="room-number">04</span><h1>System Architecture</h1></div><div class="room-content">
+      <figure class="diagram"><a href="../../assets/koro-moving/architecture.png" target="_blank"><img src="../../assets/koro-moving/architecture.png" alt="코로의 이사 시스템 아키텍처" /></a></figure>
+      <div class="content-grid"><div class="content-block"><h2>배포 요청 관리</h2><p><strong>기능</strong> 분석, 빌드, 배포와 검증 진행 상태를 Dashboard에서 확인합니다.</p><p><strong>구현</strong> Control Plane이 작업 상태를 PostgreSQL에 저장하고 pg-boss로 다음 단계를 실행합니다.</p></div><div class="content-block"><h2>환경별 배포</h2><p><strong>기능</strong> 하나의 빌드 결과를 AWS 또는 온프레미스에 배포합니다.</p><p><strong>구현</strong> AWS는 ECS Service로, 온프레미스는 Agent와 Docker Compose로 동일 image digest를 실행합니다.</p></div></div>
+      <div class="content-grid"><div class="content-block"><h2>AWS 실행 확인</h2><p><strong>기능</strong> 새 버전의 컨테이너가 실제로 실행된 경우에만 다음 단계로 이동합니다.</p><p><strong>구현</strong> 배포가 생성한 Task Definition revision과 ECS rollout 상태를 추적합니다.</p></div><div class="content-block"><h2>고정 URL 전환</h2><p><strong>기능</strong> 배포 환경이 바뀌어도 사용자는 같은 주소를 사용합니다.</p><p><strong>구현</strong> 검증된 환경으로 Cloudflare origin을 변경하고 고정 공개 URL을 다시 확인합니다.</p></div></div>
+      <p class="quote">사용자가 접근하는 URL이 정상 응답해야 배포를 완료하고, 그렇지 않으면 기존 환경을 계속 제공합니다.</p>
+    </div></section></div></div><nav class="wrap room-actions"></nav></main><footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>

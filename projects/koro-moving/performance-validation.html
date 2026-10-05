@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="코로의 이사 Performance and Validation" /><title>코로의 이사 | Performance &amp; Validation</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="performance-validation.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../koro-moving.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name" lang="ja">コロの引っ越し</span><div class="room-list"></div></aside><section class="room-stage"><div><span class="room-number">09</span><h1>Performance &amp; Validation</h1></div><div class="room-content">
+      <p class="lede">화면이나 단위 테스트만 확인하지 않고 실제 이미지를 배포했습니다. 정상 배포, AWS·온프레미스 전환, 중복 요청, 새 환경 실패와 Agent 중단을 포함한 13개 사용자 시나리오를 반복했습니다.</p>
+      <div class="content-block"><h2>Validation Overview</h2><table class="deployment-table"><thead><tr><th>항목</th><th>결과</th></tr></thead><tbody><tr><td>시나리오 / 반복</td><td>13개 / 35회</td></tr><tr><td>요청 / 실제 배포</td><td>64건 / 61회</td></tr><tr><td>예상 결과 일치</td><td>60 / 61</td></tr><tr><td>Public health</td><td>20 / 20 성공 · p95 144ms</td></tr><tr><td>AWS 동일 이미지 재배포</td><td>중앙값 20.32초</td></tr><tr><td>On-Prem 동일 이미지 재배포</td><td>중앙값 19.91초</td></tr><tr><td>AWS ↔ On-Prem 전환</td><td>6 / 6 성공 · 동일 linux/amd64 digest</td></tr></tbody></table></div>
+      <div class="content-grid"><div class="content-block"><h2>동시 요청 제어</h2><ul class="section-list"><li>서로 다른 프로젝트 5개 동시 배포: 10 / 10 성공</li><li>같은 프로젝트의 중복 배포: 하나만 실행하고 나머지는 409 응답</li><li>테스트 종료 후 남은 배포 잠금: 0</li></ul></div><div class="content-block"><h2>기존 서비스 보호</h2><ul class="section-list"><li>새 환경 검증 실패 3건 모두 완료 처리하지 않음</li><li>새 환경이 실패하는 동안 기존 서비스는 HTTP 200 유지</li><li>Agent 중단 시 장애 감지, 재시작 후 HTTP 200 복구</li></ul></div></div>
+      <div class="media-section"><h2>Operational View</h2><div class="media-grid"><figure class="media-card"><a href="../../assets/koro-moving/screens/12-dashboard.png" target="_blank"><img src="../../assets/koro-moving/screens/12-dashboard.png" alt="배포 대시보드" /></a><figcaption class="media-caption">환경과 배포 상태 대시보드</figcaption></figure><figure class="media-card"><a href="../../assets/koro-moving/screens/13-ops.png" target="_blank"><img src="../../assets/koro-moving/screens/13-ops.png" alt="운영 관측 화면" /></a><figcaption class="media-caption">검증·복구 상태 관측</figcaption></figure></div></div>
+      <p class="quote">61회의 실제 배포 중 60회가 예상 결과와 일치했습니다. 온프레미스 동시 배포 한 건은 DNS 문제로 실패했으며, 실패 조건과 기존 서비스 보호 여부까지 함께 기록했습니다.</p>
+    </div></section></div></div><nav class="wrap room-actions"></nav></main><footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>

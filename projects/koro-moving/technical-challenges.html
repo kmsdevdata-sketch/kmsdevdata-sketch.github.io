@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="코로의 이사 Technical Challenges" /><title>코로의 이사 | Technical Challenges</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="technical-challenges.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../koro-moving.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name" lang="ja">コロの引っ越し</span><div class="room-list"></div></aside><section class="room-stage"><div><span class="room-number">08</span><h1>Technical Challenges</h1></div><div class="room-content">
+      <div class="content-grid"><div class="content-block"><h2>배포 완료 오판</h2><p><strong>문제</strong> Terraform과 ECS 명령은 성공했지만 새 컨테이너가 아직 요청을 받을 수 없는 상태가 있었습니다.</p><p><strong>해결</strong> 이번 배포가 생성한 Task Definition을 기준으로 ECS rollout을 추적하고, 새 컨테이너의 URL이 연속으로 응답할 때까지 별도로 확인했습니다.</p></div><div class="content-block"><h2>공개 URL 전환 실패</h2><p><strong>문제</strong> 새 컨테이너는 정상이지만 사용자가 접속하는 고정 URL이 새 환경으로 연결되지 않는 경우가 있었습니다.</p><p><strong>해결</strong> 새 환경을 먼저 확인한 뒤 origin을 전환하고, 고정 URL을 다시 확인했습니다. 실패하면 기존 origin으로 자동 복구했습니다.</p></div></div>
+      <div class="content-grid"><div class="content-block"><h2>DNS 반영 지연</h2><p><strong>문제</strong> 새 주소가 준비되기 전에 발생한 DNS 실패가 캐시되어, 서비스 실행 후에도 외부 접속 확인이 늦어졌습니다.</p><p><strong>해결</strong> DNS 설정 완료와 외부 DNS 조회 가능 상태를 분리하고, 외부에서 조회될 때까지 재시도하도록 구성했습니다.</p></div><div class="content-block"><h2>동시 배포 충돌</h2><p><strong>문제</strong> 같은 프로젝트에 두 요청이 동시에 들어오면 각각 컨테이너와 공개 URL을 변경할 수 있었습니다.</p><p><strong>해결</strong> PostgreSQL transaction과 unique constraint로 하나의 요청만 배포 잠금을 획득하게 하고, 나머지는 409로 종료했습니다.</p></div></div>
+      <div class="media-section"><figure class="media-card"><a href="../../assets/koro-moving/screens/11-failed.png" target="_blank"><img src="../../assets/koro-moving/screens/11-failed.png" alt="배포 실패 상태 화면" /></a><figcaption class="media-caption">단계별 실패 원인과 기존 서비스 상태를 함께 표시</figcaption></figure></div>
+    </div></section></div></div><nav class="wrap room-actions"></nav></main><footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>

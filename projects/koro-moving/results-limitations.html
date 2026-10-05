@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="코로의 이사 Results and Limitations" /><title>코로의 이사 | Results &amp; Limitations</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <body data-section="results-limitations.html">
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../koro-moving.html">All Sections</a></nav></header>
+    <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name" lang="ja">コロの引っ越し</span><div class="room-list"></div></aside><section class="room-stage"><div><span class="room-number">10</span><h1>Results &amp; Limitations</h1></div><div class="room-content">
+      <div class="content-grid"><div class="content-block"><h2>Results</h2><ul class="section-list"><li>한 번 빌드한 이미지를 AWS와 온프레미스에 배포하고 전환</li><li>실제 서비스 URL이 정상인 경우에만 배포 완료</li><li>같은 요청이 반복되거나 동시에 들어와도 한 번만 실행</li><li>Agent 재시작 후 기존 컨테이너와 Tunnel 자동 복구</li><li>온프레미스 장애 시 검증된 AWS 환경으로 자동 전환</li><li>13개 시나리오와 61회 실제 배포로 주요 흐름 확인</li></ul></div><div class="content-block"><h2>Limitations</h2><ul class="section-list"><li>1주 해커톤 범위의 프로토타입으로 장기 운영 검증은 부족함</li><li>장애 전환은 미리 배포·검증된 환경이 있을 때만 동작함</li><li>DB와 파일 등 상태 데이터는 환경 사이에서 동기화하지 않음</li><li>온프레미스는 단일 애플리케이션 컨테이너 배포 중심</li><li>DNS와 외부 서비스 상태에 따라 전환이 지연될 수 있음</li><li>대규모 사용자와 장시간 부하 검증은 추가로 필요함</li></ul></div></div>
+      <div class="media-section"><figure class="media-card"><a href="../../assets/koro-moving/screens/06-result.png" target="_blank"><img src="../../assets/koro-moving/screens/06-result.png" alt="배포 완료 결과 화면" /></a><figcaption class="media-caption">배포 환경, 이미지와 공개 URL의 최종 결과</figcaption></figure></div>
+      <div class="content-block"><h2>What I Learned</h2><p>배포 명령이 성공했다는 사실과 사용자가 서비스를 정상적으로 이용할 수 있다는 사실은 다릅니다. 실제 URL을 기준으로 완료를 판단하고, 새 환경이 실패했을 때 기존 서비스를 지키는 흐름까지 설계해야 배포 기능이 완성된다는 점을 배웠습니다.</p></div>
+      <div class="resource-links"><a class="resource-link" href="https://github.com/2026-Softbank-hackathon/Auto-Deployment-System" target="_blank" rel="noreferrer"><span>Source</span><strong>GitHub Repository</strong></a></div>
+    </div></section></div></div><nav class="wrap room-actions"></nav></main><footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+  </body>
+</html>
