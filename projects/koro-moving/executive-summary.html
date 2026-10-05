@@ -11,11 +11,7 @@
           <div class="content-block"><h2>Project</h2><div class="info-list"><div class="info-row"><span>형태</span><strong>SoftBank Hackathon 2026 팀 프로젝트</strong></div><div class="info-row"><span>기간</span><strong>2026.10 · 1주</strong></div><div class="info-row"><span>팀</span><strong>Camellia · 6명</strong></div><div class="info-row"><span>담당</span><strong>Backend / Deployment Reliability</strong></div></div></div>
           <div class="content-block"><h2>Core Stack</h2><ul class="section-list"><li><strong>Control Plane</strong> TypeScript, Node.js, Fastify, PostgreSQL</li><li><strong>Runtime</strong> Docker Compose, AWS ECS, ECR</li><li><strong>Routing</strong> Cloudflare Tunnel, DNS, Health Check</li><li><strong>Verification</strong> Vitest, k6, pg-boss</li></ul></div>
         </div>
-        <div class="content-grid">
-          <div class="content-block"><h2>Development Process</h2><p>일주일 동안 팀 전체에서 약 180건의 PR이 오갈 만큼 짧은 주기로 구현과 리뷰를 반복했습니다. 매일 Slack으로 설계와 진행 상황을 공유하고, 의견이 다른 경우에도 근거를 바탕으로 토론하며 방향을 정했습니다.</p></div>
-          <div class="content-block"><h2>Field Feedback</h2><p>대회 현장에서 Progate 관계자와 두 차례 인터뷰하며 배포 도구가 고려해야 할 사용자 환경과 설계 관점의 피드백을 확인하고 구현 방향에 반영했습니다.</p></div>
-        </div>
-        <div class="content-block"><h2>My Focus</h2><p><strong>기능</strong> 배포된 서비스가 실제 URL에서 정상 동작하는지 확인하고, 온프레미스 장비가 중단되면 검증된 AWS 환경으로 전환합니다.</p><p><strong>구현</strong> 배포 검증 작업, 온프레미스 실행 Agent, 재시작 복구와 환경 정리, 장애 감지 및 전환 흐름을 맡았습니다.</p></div>
+        <div class="content-block"><h2>My Focus</h2><p>배포 명령의 성공이 아니라 사용자가 실제 URL에 접속할 수 있는 상태를 완료 기준으로 삼았습니다. 배포 결과 검증, 온프레미스 실행 Agent, 재시작 복구와 장애 전환 흐름을 맡아 새 환경이 실패해도 기존 서비스가 유지되도록 설계했습니다.</p></div>
         <div class="resource-links"><a class="resource-link" href="https://github.com/2026-Softbank-hackathon/Auto-Deployment-System" target="_blank" rel="noreferrer"><span>GitHub</span><strong>Auto-Deployment-System</strong></a></div>
       </div></section>
     </div></div><nav class="wrap room-actions" aria-label="이전 다음 섹션"></nav></main>
