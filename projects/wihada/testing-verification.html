@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="ko">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Testing & Verification 섹션입니다." /><title>위하다 | Testing & Verification</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Testing & Verification 섹션입니다." /><title>위하다 | Testing & Verification</title><link rel="stylesheet" href="../case-study.css?v=6" /></head>
   <body data-section="testing-verification.html">
-    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">All Sections</a></nav></header>
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">전체 섹션</a></nav></header>
     <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name">위하다</span><div class="room-list"></div></aside>
-      <section class="room-stage"><div><span class="room-number">09</span><h1>Testing &amp; Verification</h1></div><div class="room-content">
+      <section class="room-stage"><div><span class="room-number">09 · Testing &amp; Verification</span><h1>도메인 규칙과 실제 사용자 흐름을 서로 다른 방법으로 검증했습니다</h1></div><div class="room-content">
+        <p class="lede">도메인 규칙은 빠르게 확인하되, 저장·조회와 트랜잭션처럼 데이터베이스 동작이 중요한 기능은 실제 PostgreSQL 환경에서 검증했습니다.</p>
         <div class="content-grid">
-          <div class="content-block"><h2>Test Strategy</h2><p>값 객체와 단순 도메인 규칙은 단위 테스트로 검증하고, 저장·조회, 트랜잭션, JPA 관계와 PostgreSQL 제약조건이 중요한 기능은 통합 테스트로 검증했습니다. 핵심 시나리오는 Testcontainers PostgreSQL을 사용해 실제 동작과 가까운 조건에서 반복 실행했습니다.</p></div>
-          <div class="content-block"><h2>CI Verification</h2><ul class="section-list"><li>컴파일 및 테스트</li><li>Spotless 포맷 검사</li><li>SpotBugs 정적 분석</li><li>JaCoCo 리포트 생성</li></ul></div>
+          <div class="content-block"><h2>Test Strategy</h2><p>값 객체와 단순 도메인 규칙은 단위 테스트로 빠르게 확인했습니다. 저장·조회, 트랜잭션, JPA 관계와 PostgreSQL 제약조건이 중요한 기능은 Testcontainers PostgreSQL을 사용해 실제 동작과 가까운 조건에서 반복 검증했습니다.</p></div>
+          <div class="content-block"><h2>CI Verification</h2><ul class="section-list"><li>컴파일과 자동 테스트</li><li>Spotless 포맷 검사</li><li>SpotBugs 정적 분석</li><li>JaCoCo 리포트 생성</li></ul></div>
         </div>
-        <div class="content-block"><h2>Postman CLI Scenario</h2><ul class="section-list"><li>구매자·판매자 등록과 역할별 인증</li><li>입점 승인, 스토어 공지·갤러리·이미지 variant</li><li>주문서 양식, 초안과 제출</li><li>문의 목록, 상세, 타임라인과 읽음 처리</li><li>주문확인서 preview, 발행, 수정 요청과 대체 발행</li><li>판매자 대시보드와 매출 응답 계약</li></ul></div>
-        <p class="quote">실제 Point3 결제가 발생할 수 있어 자동 Postman 시나리오에서는 결제 준비와 승인 호출을 제외했습니다. 측정하지 않은 테스트 개수나 커버리지 수치는 기재하지 않았습니다.</p>
-        <div class="content-block"><h2>AI-assisted Development</h2><p>AI 코딩 에이전트를 코드 탐색과 반복 구현에 활용했습니다. 도메인과 유스케이스 단위로 작업 범위를 제한하고 Testcontainers 통합 테스트, Postman CLI, 정적 분석과 배포 후 로그 확인을 완료 기준으로 사용했습니다.</p></div>
+        <div class="content-block"><h2>Postman CLI Scenario</h2><ul class="section-list"><li>구매자·판매자 등록과 역할별 인증</li><li>입점 승인, 스토어 공지·갤러리와 이미지 variant</li><li>주문서 양식, 초안 저장과 제출</li><li>문의 목록, 상세 타임라인과 읽음 처리</li><li>주문확인서 미리보기, 발행, 수정 요청과 대체 발행</li><li>판매자 대시보드, 주문 목록과 매출 응답 계약</li></ul><p>외부 결제를 제외한 주요 사용자 흐름은 Postman CLI로 자동화했습니다. Point3 연동은 결제 시도와 주문 상태 전이를 통합 테스트로 확인하고, 실제 결제 준비와 승인 흐름은 개발 환경에서 별도로 검증했습니다.</p></div>
+        <div class="content-block"><h2>AI-assisted Development</h2><p>AI 코딩 에이전트는 코드 탐색과 반복 구현에 활용했습니다. 변경 범위를 도메인과 유스케이스 단위로 나누고, 통합 테스트와 Postman CLI, 정적 분석, 배포 후 로그 확인을 거쳐 결과를 반영했습니다.</p></div>
       </div></section>
     </div></div><nav class="wrap room-actions" aria-label="이전 다음 섹션"></nav></main>
-    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js?v=3"></script>
   </body>
 </html>

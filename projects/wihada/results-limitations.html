@@ -1,18 +1,23 @@
 <!doctype html>
 <html lang="ko">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Results & Limitations 섹션입니다." /><title>위하다 | Results & Limitations</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Product Outcome & Learnings 섹션입니다." /><title>위하다 | Product Outcome &amp; Learnings</title><link rel="stylesheet" href="../case-study.css?v=6" /></head>
   <body data-section="results-limitations.html">
-    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">All Sections</a></nav></header>
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">전체 섹션</a></nav></header>
     <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name">위하다</span><div class="room-list"></div></aside>
-      <section class="room-stage"><div><span class="room-number">11</span><h1>Results &amp; Limitations</h1></div><div class="room-content">
+      <section class="room-stage"><div><span class="room-number">11 · Product Outcome &amp; Learnings</span><h1>판매 플랫폼보다 반복 주문 업무를 줄이는 데 집중했습니다</h1></div><div class="room-content">
+        <p class="lede">처음에는 소셜셀러 전반을 위한 판매 서비스를 구상했습니다. 판매자 인터뷰를 거치며 주문제작 케이크 매장의 문제를 구체화했고, 고객 유입보다 이미 들어온 주문을 놓치지 않고 처리하는 흐름을 우선했습니다.</p>
         <div class="content-grid">
-          <div class="content-block"><h2>Results</h2><ul class="section-list"><li>주문서 제출부터 상담, 주문확인서, 결제, 픽업과 환불까지 핵심 흐름 구현</li><li>구매자와 판매자 웹 서비스에 실제 API 제공</li><li>Point3 결제 및 실시간 상담 타임라인 연동</li><li>판매자 주문 목록, 캘린더와 매출 분석 구현</li><li>비동기 이미지 variant 처리</li><li>AWS 개발 환경 배포와 CI/CD 구성</li><li>통합 테스트와 Postman CLI 시나리오 구축</li></ul></div>
-          <div class="content-block"><h2>Current Limitations</h2><ul class="section-list"><li>제한된 ECS 용량으로 고가용성과 무중단 배포 검증 부족</li><li>대규모 WebSocket 연결 및 Redis Pub/Sub 부하 테스트 부족</li><li>실제 Point3 결제를 자동 시나리오에서 제외</li><li>운영자 기능과 판매자 정산 자동화 범위 제한</li><li>분산 추적, 메트릭과 자동 장애 알림 보강 필요</li><li>Domain Model과 JPA Entity 통합에 따른 영속성 관심사 잔존</li></ul></div>
+          <div class="content-block"><h2>인터뷰로 좁힌 문제</h2><p>5명의 판매자와 30분 이상의 심층 인터뷰를 진행했습니다. 주문제작 케이크 매장은 상담 내용, 주문 양식, 입금 여부와 픽업 일정이 여러 채널에 흩어져 있어 주문 한 건을 처리할 때마다 같은 정보를 다시 확인하고 옮기고 있었습니다.</p></div>
+          <div class="content-block"><h2>바뀐 우선순위</h2><p>주문제작 매장은 상담과 제작을 함께 맡아 생산량에 한계가 있습니다. 판매량을 늘리는 기능보다 주문서 제출, 상담, 가격 확정, 결제와 픽업을 한 흐름으로 연결하는 일이 먼저라고 판단했습니다.</p></div>
         </div>
-        <p class="quote">측정하지 않은 응답 시간, 처리량, 배포 횟수와 성공률은 결과로 기재하지 않았습니다.</p>
+        <div class="content-grid">
+          <div class="content-block"><h2>구현한 제품 흐름</h2><p>판매자가 주문 항목을 설정하면 고객이 주문서를 제출하고, 상담을 마친 판매자가 주문확인서에 최종 가격과 픽업 조건을 확정합니다. 고객은 자신의 주문 조건과 금액을 확인한 뒤 결제를 진행하고, 판매자는 주문 목록과 캘린더에서 이후 상태를 관리합니다.</p></div>
+          <div class="content-block"><h2>우선순위에서 제외한 기능</h2><p>범용 상품 카탈로그와 고객 유입 기능은 1차 범위에서 제외했습니다. 상품과 가격을 미리 표준화하는 방식이 주문제작 판매자의 업무와 맞지 않았고, 새로운 판매 채널보다 기존 주문의 반복 작업을 줄이는 효과를 먼저 확인해야 했기 때문입니다.</p></div>
+        </div>
+        <div class="content-block"><h2>외부 제약과 다음 검증</h2><p>프로젝트에서 사용한 Point3는 계좌이체만 지원해 카드결제까지 제공하지 못했습니다. 주문 가격을 확정하는 구조와 결제수단은 분리해 다른 PG를 연동하더라도 주문 흐름을 유지할 수 있게 했습니다. 또한 기존 DM과 카카오톡 사용 습관을 한 번에 바꾸기보다 인스타그램 프로필 링크에서 주문서를 시작하는 방식을 선택했습니다. 다음 단계에서는 실제 매장의 반복 사용을 통해 주문 누락과 확인 시간이 줄어드는지 검증할 계획입니다.</p></div>
         <div class="resource-links"><a class="resource-link" href="https://github.com/kmsdevdata-sketch/wihada-api" target="_blank" rel="noreferrer"><span>GitHub</span><strong>구현 코드 확인</strong></a><a class="resource-link" href="../wihada.html"><span>Project</span><strong>전체 섹션으로 돌아가기</strong></a></div>
       </div></section>
     </div></div><nav class="wrap room-actions" aria-label="이전 다음 섹션"></nav></main>
-    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js?v=3"></script>
   </body>
 </html>

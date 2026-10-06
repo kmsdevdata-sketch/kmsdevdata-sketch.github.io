@@ -6,13 +6,13 @@
     <meta name="description" content="OneAsset Troubleshooting 섹션입니다." />
     <meta name="theme-color" content="#ffffff" />
     <title>OneAsset | Troubleshooting</title>
-    <link rel="stylesheet" href="../case-study.css?v=4" />
+    <link rel="stylesheet" href="../case-study.css?v=6" />
   </head>
   <body>
     <header class="site-header">
       <nav class="wrap nav" aria-label="OneAsset 섹션 내비게이션">
         <a class="brand" href="../../index.html">Kim Minseo</a>
-        <a class="nav-link" href="../oneasset.html">All Sections</a>
+        <a class="nav-link" href="../oneasset.html">전체 섹션</a>
       </nav>
     </header>
     <main class="gallery-room">
@@ -21,48 +21,62 @@
           <aside class="room-index" aria-label="OneAsset 섹션 목록">
             <span class="project-name">OneAsset</span>
             <div class="room-list">
-              <a href="project-overview.html"><span>01</span>Project Overview</a>
-              <a href="problem-goal.html"><span>02</span>Problem &amp; Goal</a>
-              <a href="aws-architecture.html"><span>03</span>AWS Architecture</a>
-              <a href="backend-architecture.html"><span>04</span>Backend Architecture</a>
-              <a href="asset-processing-flow.html"><span>05</span>Asset Processing Flow</a>
-              <a href="data-model.html"><span>06</span>Data Model</a>
-              <a href="deployment-operations.html"><span>07</span>Deployment &amp; Operations</a>
-              <a href="load-test-observability.html"><span>08</span>Load Test &amp; Observability</a>
-              <a href="troubleshooting.html" aria-current="page"><span>09</span>Troubleshooting</a>
-              <a href="next-steps.html"><span>10</span>Next Steps</a>
+              <a href="project-overview.html"><span>01</span>프로젝트 한눈에 보기</a>
+              <a href="problem-goal.html"><span>02</span>문제와 목표</a>
+              <a href="aws-architecture.html"><span>03</span>AWS 구조</a>
+              <a href="backend-architecture.html"><span>04</span>백엔드 구조</a>
+              <a href="asset-processing-flow.html"><span>05</span>이미지 처리 흐름</a>
+              <a href="data-model.html"><span>06</span>데이터 모델</a>
+              <a href="deployment-operations.html"><span>07</span>배포와 운영</a>
+              <a href="load-test-observability.html"><span>08</span>부하 테스트와 관찰</a>
+              <a href="troubleshooting.html" aria-current="page"><span>09</span>문제 해결</a>
+              <a href="next-steps.html"><span>10</span>운영 개선 계획</a>
             </div>
           </aside>
           <section class="room-stage">
-            <div><span class="room-number">09</span><h1>Troubleshooting</h1></div>
+            <div><span class="room-number">09 · Troubleshooting</span><h1>증상이 나타난 구간을 요청 경로와 실행 경로로 나눠 추적했습니다</h1></div>
             <div class="room-content">
-              <table class="deployment-table">
-                <thead><tr><th>Problem</th><th>Cause</th><th>Fix</th></tr></thead>
-                <tbody>
-                  <tr><td>Cognito metadata timeout</td><td>private subnet task의 outbound 경로 없음</td><td>NAT Gateway + private route table 구성</td></tr>
-                  <tr><td>Cloudflare 경유 20초 지연</td><td>ALB public subnet과 ECS private subnet 역할 혼선</td><td>ALB public subnet, ECS private subnet으로 분리</td></tr>
-                  <tr><td>ALB 503</td><td>ECS task AZ가 ALB enabled AZ와 불일치</td><td>ALB/ECS subnet AZ 정렬</td></tr>
-                  <tr><td>Lambda callback 401</td><td>Lambda와 ECS callback token 불일치</td><td>환경변수 일치</td></tr>
-                  <tr><td>Lambda timeout</td><td>기본 3초로 이미지 변환/콜백 완료 불가</td><td>timeout 30초로 증가</td></tr>
-                </tbody>
-              </table>
               <p class="lede">
-                OneAsset에서 가장 중요한 트러블슈팅은 배포 명령 자체보다 네트워크 경계와
-                런타임 위치를 바로잡는 일이었습니다.
+                배포 실패처럼 보이는 증상도 실제 원인은 서로 달랐습니다. 외부 요청이
+                애플리케이션에 도달하는 경로, ECS Task가 외부 서비스로 나가는 경로,
+                Lambda가 결과를 돌려주는 경로를 분리해 확인했습니다.
               </p>
-              <p class="quote">
-                특히 private subnet의 ECS Task outbound 경로, ALB와 ECS subnet/AZ 정렬,
-                Cloudflare와 ALB 사이의 요청 흐름을 분리해서 보면서 장애 원인을 좁혔습니다.
-              </p>
+              <div class="decision-list">
+                <article class="content-block">
+                  <h2>Cloudflare 경유 요청이 약 20초 동안 지연됨</h2>
+                  <div class="case-details">
+                    <div class="case-step"><span class="case-label">재현과 추적</span><p>애플리케이션 로그가 남기 전에 응답이 지연되어 Spring Boot 처리 시간이 원인이 아님을 확인했습니다. Cloudflare, ALB, Target Group 순서로 요청 도달 여부와 subnet 구성을 비교했습니다.</p></div>
+                    <div class="case-step"><span class="case-label">원인</span><p>외부 요청을 받는 ALB와 애플리케이션을 실행하는 ECS Task의 네트워크 역할이 섞여 있었습니다. Target이 배치된 AZ도 ALB enabled AZ와 일치하지 않아 503이 함께 발생했습니다.</p></div>
+                    <div class="case-step"><span class="case-label">수정과 확인</span><p>ALB는 public subnet, ECS Task는 private subnet에 배치하고 양쪽 AZ를 맞췄습니다. 이후 Target Health가 정상으로 전환되고 Cloudflare 도메인 요청이 Task까지 바로 전달되는지 확인했습니다.</p></div>
+                  </div>
+                </article>
+                <article class="content-block">
+                  <h2>Private subnet의 Task에서 Cognito metadata를 읽지 못함</h2>
+                  <div class="case-details">
+                    <div class="case-step"><span class="case-label">재현과 추적</span><p>ALB Health Check는 통과했지만 인증 요청에서만 timeout이 발생했습니다. Task 내부에서 Cognito metadata와 AWS public endpoint로 나가는 연결을 각각 확인했습니다.</p></div>
+                    <div class="case-step"><span class="case-label">원인</span><p>Private subnet의 route table에 외부로 나가는 경로가 없어 JWT 검증에 필요한 Cognito metadata를 가져올 수 없었습니다.</p></div>
+                    <div class="case-step"><span class="case-label">수정과 확인</span><p>NAT Gateway와 private route table을 연결한 뒤 Task에서 metadata endpoint 접근과 인증 API를 다시 확인했습니다. 인바운드는 ALB로 제한하면서 필요한 아웃바운드 통신을 분리했습니다.</p></div>
+                  </div>
+                </article>
+                <article class="content-block">
+                  <h2>이미지는 변환됐지만 Asset이 READY로 바뀌지 않음</h2>
+                  <div class="case-details">
+                    <div class="case-step"><span class="case-label">재현과 추적</span><p>S3에는 WebP variant가 생성됐지만 DB 상태는 PROCESSING에 머물렀습니다. Lambda 로그에서 변환 완료 뒤 internal callback이 401 또는 timeout으로 끝나는 구간을 찾았습니다.</p></div>
+                    <div class="case-step"><span class="case-label">원인</span><p>Lambda와 ECS에 주입된 callback token이 달랐고, 기본 3초 timeout으로는 이미지 변환과 callback까지 마치기 어려웠습니다.</p></div>
+                    <div class="case-step"><span class="case-label">수정과 확인</span><p>두 런타임의 token을 같은 설정값으로 맞추고 Lambda timeout을 30초로 조정했습니다. 이후 variant 저장, callback, READY 전이가 한 흐름으로 완료되는지 업로드 시나리오로 확인했습니다.</p></div>
+                  </div>
+                </article>
+              </div>
             </div>
           </section>
         </div>
       </div>
       <nav class="wrap room-actions" aria-label="이전 다음 섹션">
-        <a href="load-test-observability.html">Previous: Load Test &amp; Observability</a>
-        <a href="next-steps.html">Next: Next Steps</a>
+        <a href="load-test-observability.html">이전: 부하 테스트와 관찰</a>
+        <a href="next-steps.html">다음: 운영 개선 계획</a>
       </nav>
     </main>
     <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer>
+    <script src="../detail-version.js?v=20261007-5"></script>
   </body>
 </html>

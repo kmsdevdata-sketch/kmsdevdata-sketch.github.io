@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="ko">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Contribution & Scope 섹션입니다." /><title>위하다 | Contribution & Scope</title><link rel="stylesheet" href="../case-study.css?v=4" /></head>
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="위하다 Contribution & Scope 섹션입니다." /><title>위하다 | Contribution & Scope</title><link rel="stylesheet" href="../case-study.css?v=6" /></head>
   <body data-section="contribution-scope.html">
-    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">All Sections</a></nav></header>
+    <header class="site-header"><nav class="wrap nav"><a class="brand" href="../../index.html">Kim Minseo</a><a class="nav-link" href="../wihada.html">전체 섹션</a></nav></header>
     <main class="gallery-room"><div class="room-main"><div class="wrap room-layout"><aside class="room-index"><span class="project-name">위하다</span><div class="room-list"></div></aside>
-      <section class="room-stage"><div><span class="room-number">03</span><h1>Contribution &amp; Scope</h1></div><div class="room-content">
-        <p class="lede">4인 팀의 백엔드 개발자로 참여했습니다. 사용자 인터뷰와 기획 문서 작성부터 직군 간 기능 협의, 실시간 상담 흐름과 외부 결제 연동, 배포까지 서비스 개발 전 과정을 경험했습니다.</p>
+      <section class="room-stage"><div><span class="room-number">03 · 기여 범위</span><h1>문제 정의부터 배포까지 백엔드를 맡았습니다</h1></div><div class="room-content">
+        <p class="lede">4인 팀의 백엔드 개발자로 참여했습니다. 팀이 함께 결정한 제품 범위와 제가 직접 설계·구현한 서버 작업을 구분해 정리했습니다.</p>
         <div class="content-grid">
-          <div class="content-block"><h2>Discovery &amp; Collaboration</h2><ul class="section-list"><li>5명의 사용자 심층 인터뷰로 주문·상담 과정의 불편 확인</li><li>대표 피드백을 바탕으로 사용자 가치와 사업 관점 검토</li><li>IR 자료, PRD와 세부 기능 명세 공동 작성</li><li>PM·디자이너·프론트엔드와 기능 범위 및 인터페이스 조율</li><li>ERD를 활용해 데이터 모델과 주문 흐름 설명</li></ul></div>
-          <div class="content-block"><h2>Realtime &amp; Payment</h2><ul class="section-list"><li>WebSocket/STOMP 채팅과 Redis Pub/Sub 구성</li><li>주문서·주문확인서·결제 CTA를 실시간 타임라인으로 확장</li><li>트랜잭션 완료 이후 이벤트를 발행해 조회 시점 일관성 확보</li><li>외부 결제 API 연동과 결제 시도·주문 상태 분리</li><li>중복 요청을 고려한 멱등성과 예외 처리 적용</li></ul></div>
+          <div class="content-block"><h2>제품을 정하는 과정</h2><ul class="section-list"><li>소셜 셀러 5명 현장 인터뷰 진행</li><li>IR 자료, PRD와 세부 기능 명세 작성 참여</li><li>PM·디자이너·프론트엔드와 기능 범위와 API 계약 조율</li><li>ERD와 상태 흐름으로 주문 모델 설명</li></ul></div>
+          <div class="content-block"><h2>실시간 상담과 결제</h2><ul class="section-list"><li>WebSocket/STOMP 채팅과 Redis Pub/Sub 구성</li><li>주문서·주문확인서·결제 CTA를 타임라인에 통합</li><li>트랜잭션 커밋 이후 이벤트 발행</li><li>외부 결제 API와 내부 PaymentAttempt 연동</li><li>재시도와 중복 클릭을 고려한 멱등 처리</li></ul></div>
         </div>
         <div class="content-grid">
-          <div class="content-block"><h2>Backend Scope</h2><ul class="section-list"><li>구매자·판매자 인증과 역할별 API 권한 검증</li><li>판매자 입점, 스토어 정보와 운영 설정</li><li>동적 주문서 양식, 제출과 주문확인서 흐름</li><li>주문, 픽업과 환불 상태 관리</li></ul></div>
-          <div class="content-block"><h2>Operations &amp; Improvement</h2><ul class="section-list"><li>현재 주문 주기와 과거 이벤트의 상태 분리</li><li>참조 이미지와 주문 당시 스냅샷 분리</li><li>판매자 캘린더, 매출 분석과 이메일 알림 구현</li><li>AWS 배포 및 CI/CD 구성</li></ul></div>
+          <div class="content-block"><h2>주문 도메인과 API</h2><ul class="section-list"><li>구매자·판매자 인증과 역할별 권한 검증</li><li>스토어 운영 설정과 동적 주문서 양식</li><li>주문서 제출, 주문확인서 발행과 수정 흐름</li><li>결제, 픽업과 환불 상태 관리</li></ul></div>
+          <div class="content-block"><h2>배포 뒤 보완한 부분</h2><ul class="section-list"><li>현재 주문 주기와 과거 이벤트의 상태 분리</li><li>현재 참조 이미지와 주문 당시 스냅샷 분리</li><li>판매자 캘린더, 매출 조회와 이메일 알림</li><li>AWS 배포와 GitHub Actions CI/CD 구성</li></ul></div>
         </div>
-        <div class="content-block"><h2>Team</h2><div class="info-list"><div class="info-row"><span>PM / Lead</span><strong>1명</strong></div><div class="info-row"><span>Designer</span><strong>1명</strong></div><div class="info-row"><span>Backend</span><strong>2명</strong></div></div></div>
+        <div class="content-block"><h2>팀 구성</h2><div class="info-list"><div class="info-row"><span>PM / 팀장</span><strong>1명</strong></div><div class="info-row"><span>디자이너</span><strong>1명</strong></div><div class="info-row"><span>백엔드</span><strong>2명</strong></div></div></div>
       </div></section>
     </div></div><nav class="wrap room-actions" aria-label="이전 다음 섹션"></nav></main>
-    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js"></script>
+    <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer><script src="section-nav.js?v=3"></script>
   </body>
 </html>

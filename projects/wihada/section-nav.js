@@ -5,20 +5,22 @@ const sections = [
   ["04", "System Architecture", "system-architecture.html"],
   ["05", "Backend Architecture", "backend-architecture.html"],
   ["06", "Domain & Data Model", "domain-data-model.html"],
-  ["07", "Technical Challenges", "technical-challenges.html"],
+  ["07", "Technical Decisions", "technical-challenges.html"],
   ["08", "Infrastructure & Deployment", "infrastructure-deployment.html"],
   ["09", "Testing & Verification", "testing-verification.html"],
   ["10", "Troubleshooting", "troubleshooting.html"],
-  ["11", "Results & Limitations", "results-limitations.html"],
+  ["11", "Product Outcome & Learnings", "results-limitations.html"],
 ];
 
 const current = document.body.dataset.section;
 const index = sections.findIndex((section) => section[2] === current);
+const contentVersion = "20261007-5";
+const versioned = (href) => `${href}?v=${contentVersion}`;
 
 document.querySelector(".room-list").innerHTML = sections
   .map(
     ([number, label, href]) =>
-      `<a href="${href}"${href === current ? ' aria-current="page"' : ""}><span>${number}</span><span class="room-label">${label}</span></a>`,
+      `<a href="${versioned(href)}"${href === current ? ' aria-current="page"' : ""}><span>${number}</span><span class="room-label">${label}</span></a>`,
   )
   .join("");
 
@@ -28,10 +30,10 @@ const next = index < sections.length - 1 ? sections[index + 1] : null;
 
 actions.innerHTML = `${
   previous
-    ? `<a href="${previous[2]}">Previous: ${previous[1]}</a>`
-    : '<a href="../wihada.html">All Sections</a>'
+    ? `<a href="${versioned(previous[2])}">이전: ${previous[1]}</a>`
+    : `<a href="${versioned("../wihada.html")}">전체 섹션</a>`
 }${
   next
-    ? `<a href="${next[2]}">Next: ${next[1]}</a>`
-    : '<a href="../wihada.html">All Sections</a>'
+    ? `<a href="${versioned(next[2])}">다음: ${next[1]}</a>`
+    : `<a href="${versioned("../wihada.html")}">전체 섹션</a>`
 }`;

@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="OneAsset Backend Architecture 섹션입니다." />
+    <meta name="description" content="OneAsset 백엔드 구조 섹션입니다." />
     <meta name="theme-color" content="#ffffff" />
-    <title>OneAsset | Backend Architecture</title>
-    <link rel="stylesheet" href="../case-study.css?v=4" />
+    <title>OneAsset | 백엔드 구조</title>
+    <link rel="stylesheet" href="../case-study.css?v=6" />
   </head>
   <body>
     <header class="site-header">
       <nav class="wrap nav" aria-label="OneAsset 섹션 내비게이션">
         <a class="brand" href="../../index.html">Kim Minseo</a>
-        <a class="nav-link" href="../oneasset.html">All Sections</a>
+        <a class="nav-link" href="../oneasset.html">전체 섹션</a>
       </nav>
     </header>
     <main class="gallery-room">
@@ -21,20 +21,20 @@
           <aside class="room-index" aria-label="OneAsset 섹션 목록">
             <span class="project-name">OneAsset</span>
             <div class="room-list">
-              <a href="project-overview.html"><span>01</span>Project Overview</a>
-              <a href="problem-goal.html"><span>02</span>Problem &amp; Goal</a>
-              <a href="aws-architecture.html"><span>03</span>AWS Architecture</a>
-              <a href="backend-architecture.html" aria-current="page"><span>04</span>Backend Architecture</a>
-              <a href="asset-processing-flow.html"><span>05</span>Asset Processing Flow</a>
-              <a href="data-model.html"><span>06</span>Data Model</a>
-              <a href="deployment-operations.html"><span>07</span>Deployment &amp; Operations</a>
-              <a href="load-test-observability.html"><span>08</span>Load Test &amp; Observability</a>
-              <a href="troubleshooting.html"><span>09</span>Troubleshooting</a>
-              <a href="next-steps.html"><span>10</span>Next Steps</a>
+              <a href="project-overview.html"><span>01</span>프로젝트 한눈에 보기</a>
+              <a href="problem-goal.html"><span>02</span>문제와 목표</a>
+              <a href="aws-architecture.html"><span>03</span>AWS 구조</a>
+              <a href="backend-architecture.html" aria-current="page"><span>04</span>백엔드 구조</a>
+              <a href="asset-processing-flow.html"><span>05</span>이미지 처리 흐름</a>
+              <a href="data-model.html"><span>06</span>데이터 모델</a>
+              <a href="deployment-operations.html"><span>07</span>배포와 운영</a>
+              <a href="load-test-observability.html"><span>08</span>부하 테스트와 관찰</a>
+              <a href="troubleshooting.html"><span>09</span>문제 해결</a>
+              <a href="next-steps.html"><span>10</span>운영 개선 계획</a>
             </div>
           </aside>
           <section class="room-stage">
-            <div><span class="room-number">04</span><h1>Backend Architecture</h1></div>
+            <div><span class="room-number">04 · 백엔드 구조</span><h1>업로드 흐름과 인프라 구현의 경계를 나눴습니다</h1></div>
             <div class="room-content">
               <div class="diagram">
                 <a href="../../assets/oneasset/backend-architecture.png" target="_blank" rel="noreferrer">
@@ -45,21 +45,24 @@
                 </a>
               </div>
               <p class="lede">
-                백엔드는 Controller, Application Service, Domain, Outbound Adapter로 나눴습니다.
+                업로드 요청에는 파일 저장, 메타데이터 기록, 처리 메시지 발행이 함께
+                필요합니다. 이 순서를 Application Service가 조율하고, 저장소와 큐의
+                구체적인 구현은 Port 뒤에 두었습니다.
               </p>
               <div class="content-grid">
                 <div class="content-block">
-                  <h2>Application Flow</h2>
+                  <h2>애플리케이션 흐름</h2>
                   <p>
                     Controller는 HTTP 요청을 받아 command로 변환하고, Application Service는
                     파일 저장, 메타데이터 저장, 큐 발행, 상태 전이를 조율합니다.
                   </p>
                 </div>
                 <div class="content-block">
-                  <h2>Port &amp; Adapter</h2>
+                  <h2>외부 실패를 흐름 밖으로 격리</h2>
                   <p>
-                    S3, SQS, JPA 같은 외부 기술은 Port와 Adapter 뒤로 분리하여 핵심
-                    애플리케이션 흐름이 특정 인프라 구현에 직접 묶이지 않도록 했습니다.
+                    S3 저장과 SQS 발행은 각각 실패 조건이 다릅니다. Application Service는
+                    업무 순서와 상태 전이에 집중하고, AWS SDK 호출과 JPA 저장은 Adapter가
+                    맡도록 나눠 실패 지점과 테스트 대상을 구분했습니다.
                   </p>
                 </div>
               </div>
@@ -72,10 +75,11 @@
         </div>
       </div>
       <nav class="wrap room-actions" aria-label="이전 다음 섹션">
-        <a href="aws-architecture.html">Previous: AWS Architecture</a>
-        <a href="asset-processing-flow.html">Next: Asset Processing Flow</a>
+        <a href="aws-architecture.html">이전: AWS 구조</a>
+        <a href="asset-processing-flow.html">다음: 이미지 처리 흐름</a>
       </nav>
     </main>
     <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer>
+    <script src="../detail-version.js?v=20261007-5"></script>
   </body>
 </html>

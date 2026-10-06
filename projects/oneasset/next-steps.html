@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="OneAsset Current Limitations & Next Steps 섹션입니다." />
+    <meta name="description" content="OneAsset 운영 개선 계획 섹션입니다." />
     <meta name="theme-color" content="#ffffff" />
     <title>OneAsset | Next Steps</title>
-    <link rel="stylesheet" href="../case-study.css?v=4" />
+    <link rel="stylesheet" href="../case-study.css?v=6" />
   </head>
   <body>
     <header class="site-header">
       <nav class="wrap nav" aria-label="OneAsset 섹션 내비게이션">
         <a class="brand" href="../../index.html">Kim Minseo</a>
-        <a class="nav-link" href="../oneasset.html">All Sections</a>
+        <a class="nav-link" href="../oneasset.html">전체 섹션</a>
       </nav>
     </header>
     <main class="gallery-room">
@@ -21,53 +21,57 @@
           <aside class="room-index" aria-label="OneAsset 섹션 목록">
             <span class="project-name">OneAsset</span>
             <div class="room-list">
-              <a href="project-overview.html"><span>01</span>Project Overview</a>
-              <a href="problem-goal.html"><span>02</span>Problem &amp; Goal</a>
-              <a href="aws-architecture.html"><span>03</span>AWS Architecture</a>
-              <a href="backend-architecture.html"><span>04</span>Backend Architecture</a>
-              <a href="asset-processing-flow.html"><span>05</span>Asset Processing Flow</a>
-              <a href="data-model.html"><span>06</span>Data Model</a>
-              <a href="deployment-operations.html"><span>07</span>Deployment &amp; Operations</a>
-              <a href="load-test-observability.html"><span>08</span>Load Test &amp; Observability</a>
-              <a href="troubleshooting.html"><span>09</span>Troubleshooting</a>
-              <a href="next-steps.html" aria-current="page"><span>10</span>Next Steps</a>
+              <a href="project-overview.html"><span>01</span>프로젝트 한눈에 보기</a>
+              <a href="problem-goal.html"><span>02</span>문제와 목표</a>
+              <a href="aws-architecture.html"><span>03</span>AWS 구조</a>
+              <a href="backend-architecture.html"><span>04</span>백엔드 구조</a>
+              <a href="asset-processing-flow.html"><span>05</span>이미지 처리 흐름</a>
+              <a href="data-model.html"><span>06</span>데이터 모델</a>
+              <a href="deployment-operations.html"><span>07</span>배포와 운영</a>
+              <a href="load-test-observability.html"><span>08</span>부하 테스트와 관찰</a>
+              <a href="troubleshooting.html"><span>09</span>문제 해결</a>
+              <a href="next-steps.html" aria-current="page"><span>10</span>운영 개선 계획</a>
             </div>
           </aside>
           <section class="room-stage">
-            <div><span class="room-number">10</span><h1>Current Limitations &amp; Next Steps</h1></div>
+            <div><span class="room-number">10 · 운영 개선 계획</span><h1>반복 가능한 배포와 장애 대응을 다음 운영 기준으로 잡았습니다</h1></div>
             <div class="room-content">
               <div class="content-grid">
                 <div class="content-block">
-                  <h2>현재 한계</h2>
+                  <h2>보안 경계 정리</h2>
                   <ul class="section-list">
-                    <li>RDS Security Group에 default SG가 임시 허용되어 있어 정리 필요</li>
-                    <li>POSTGRES_PASSWORD, callback token 등 secret을 ECS 환경변수에 평문으로 두고 있어 이전 필요</li>
-                    <li>인프라가 콘솔 기반으로 구성되어 있어 IaC로 재현 가능하게 정리 필요</li>
-                    <li>CloudFront custom domain은 아직 적용하지 않고 기본 도메인을 사용 중</li>
-                    <li>DLQ redrive, alarm, retry 운영 정책은 MVP2에서 보강 필요</li>
+                    <li>ECS Task 전용 Security Group을 분리하고 RDS 인바운드를 해당 Task로 제한</li>
+                    <li>데이터베이스 비밀번호와 callback token을 Secrets Manager 또는 Parameter Store로 이전</li>
+                    <li>API Key 사용량과 요청 제한을 프로젝트 단위로 기록</li>
                   </ul>
                 </div>
                 <div class="content-block">
-                  <h2>다음 단계</h2>
+                  <h2>장애 대응 자동화</h2>
                   <ul class="section-list">
-                    <li>ECS Task 전용 SG 정리 및 RDS SG 최소 권한화</li>
-                    <li>AWS Secrets Manager / Parameter Store 적용</li>
-                    <li>CloudWatch Alarm 및 DLQ 복구 흐름 구성</li>
-                    <li>Terraform 또는 AWS CDK 기반 IaC 정리</li>
-                    <li>Asset tree view와 variant 상태 표시 개선</li>
-                    <li>usage limit / rate limit / API key usage tracking 추가</li>
+                    <li>SQS 적체와 DLQ 유입을 CloudWatch Alarm으로 연결</li>
+                    <li>실패 메시지를 원인별로 확인하고 다시 처리하는 redrive 절차 구성</li>
+                    <li>Asset 화면에서 원본과 variant 처리 상태를 함께 표시</li>
                   </ul>
                 </div>
+              </div>
+              <div class="content-block">
+                <h2>재현 가능한 인프라</h2>
+                <p>
+                  콘솔에서 만든 VPC, ECS, RDS, SQS와 Lambda 구성을 Terraform 또는 AWS CDK로
+                  옮길 계획입니다. 새 환경을 같은 설정으로 다시 만들 수 있어야 네트워크와
+                  권한 변경도 코드 리뷰와 이력 관리의 대상으로 다룰 수 있습니다.
+                </p>
               </div>
             </div>
           </section>
         </div>
       </div>
       <nav class="wrap room-actions" aria-label="이전 다음 섹션">
-        <a href="troubleshooting.html">Previous: Troubleshooting</a>
-        <a href="../oneasset.html">All Sections</a>
+        <a href="troubleshooting.html">이전: 문제 해결</a>
+        <a href="../oneasset.html">전체 섹션</a>
       </nav>
     </main>
     <footer class="site-footer"><div class="wrap">© 2026 Kim Minseo</div></footer>
+    <script src="../detail-version.js?v=20261007-5"></script>
   </body>
 </html>

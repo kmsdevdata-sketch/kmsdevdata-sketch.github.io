@@ -1692,6 +1692,8 @@
         font-size: clamp(1.3rem, 2vw, 1.7rem);
         font-weight: 520;
         line-height: 1.52;
+        word-break: keep-all;
+        overflow-wrap: normal;
       }
 
       .hero-subcopy {
@@ -1700,6 +1702,8 @@
         color: var(--muted);
         font-size: clamp(1rem, 1.35vw, 1.15rem);
         line-height: 1.7;
+        word-break: keep-all;
+        overflow-wrap: normal;
       }
 
       .profile-summary .actions {
@@ -2519,12 +2523,11 @@
                 </div>
               </div>
               <p class="hero-statement">
-                기술을 사용하는 데 그치지 않고,<br />왜 그렇게 동작하는지 이해하려는 백엔드
-                개발자입니다.
+                기술을 사용하는 것보다,<br />왜 그렇게 동작하는지를 이해하는 백엔드 개발자입니다.
               </p>
               <p class="hero-subcopy">
-                서비스의 설계부터 배포와 운영까지 직접 경험하며<br />더 나은 구조와 설계를
-                고민하고 있습니다.
+                서비스의 설계부터 배포와 운영까지 직접 경험하며<br />기술의 본질을 쌓아가고
+                있습니다.
               </p>
               <div class="actions">
                 <a
@@ -2650,7 +2653,7 @@
                     <h3 lang="ja">コロの引っ越し</h3>
                     <div class="project-title-actions" aria-label="코로의 이사 프로젝트 링크">
                       <a class="project-link" href="https://github.com/2026-Softbank-hackathon/Auto-Deployment-System" target="_blank" rel="noreferrer">GitHub</a>
-                      <a class="detail-link" href="projects/koro-moving.html">자세히 보기</a>
+                      <a class="detail-link" href="projects/koro-moving.html?v=20261007-5">자세히 보기</a>
                     </div>
                   </div>
                   <div class="project-korean-name">코로의 이사 · Backend / Deployment Reliability</div>
@@ -2686,13 +2689,14 @@
                       <a class="project-link" href="https://seller.wihada.com" target="_blank" rel="noreferrer">판매자</a>
                       <a class="project-link" href="https://github.com/kmsdevdata-sketch/wihada-api" target="_blank" rel="noreferrer">GitHub</a>
                       <a class="project-link" href="assets/wihada/team-presentation-2026-09-18.pdf" target="_blank" rel="noreferrer">프로젝트 소개서</a>
-                      <a class="detail-link" href="projects/wihada.html">자세히 보기</a>
+                      <a class="detail-link" href="projects/wihada.html?v=20261007-5">자세히 보기</a>
                     </div>
                   </div>
                   <p>
-                    SNS 소셜 셀러의 주문 접수, 상담, 결제, 픽업과 환불을 하나의 상담
-                    흐름으로 관리하는 주문 관리 플랫폼입니다. 사용자 심층 인터뷰와 PRD 작성에
-                    참여하고 WebSocket/STOMP 상담 타임라인과 외부 결제 연동을 구현했습니다.
+                    주문제작 케이크 매장의 상담부터 주문서 작성, 결제, 픽업까지 한 흐름으로
+                    관리하는 서비스입니다. 백엔드 개발을 담당하며 사용자 인터뷰를 바탕으로
+                    주문·상담·결제 구조를 설계하고, 실시간 상담 타임라인과 주문 단위 결제 흐름을
+                    구현했습니다.
                   </p>
                   <div class="tags">
                     <span class="tag">Java 25</span>
@@ -2719,13 +2723,14 @@
                     <div class="project-title-actions" aria-label="OneAsset 프로젝트 링크">
                       <a class="project-link" href="https://www.oneasset.tech/" target="_blank" rel="noreferrer">서비스</a>
                       <a class="project-link" href="https://github.com/kmsdevdata-sketch/oneasset-api.git" target="_blank" rel="noreferrer">GitHub</a>
-                      <a class="detail-link" href="projects/oneasset.html">자세히 보기</a>
+                      <a class="detail-link" href="projects/oneasset.html?v=20261007-5">자세히 보기</a>
                     </div>
                   </div>
                   <p>
-                    개발자용 클라우드 에셋 딜리버리 API입니다. API Key 기반 업로드,
-                    private S3 저장, SQS/Lambda 비동기 변환, CloudFront delivery 흐름을
-                    구성했습니다.
+                    외부 애플리케이션에서 이미지를 업로드하고 변환된 파일을 사용할 수 있도록 만든
+                    클라우드 기반 에셋 관리 서비스입니다. 개인 프로젝트로 백엔드와 AWS 인프라를
+                    설계·운영했으며, 비동기 이미지 처리와 부하 테스트를 통해 처리 지연 구간을
+                    확인했습니다.
                   </p>
                   <div class="tags">
                     <span class="tag">Java</span>
@@ -2753,12 +2758,13 @@
                     <div class="project-title-actions" aria-label="Pium 프로젝트 링크">
                       <a class="project-link" href="https://www.pium.app/" target="_blank" rel="noreferrer">서비스</a>
                       <a class="project-link" href="https://github.com/kmsdevdata-sketch/pium-api.git" target="_blank" rel="noreferrer">GitHub</a>
-                      <a class="detail-link" href="projects/pium.html">자세히 보기</a>
+                      <a class="detail-link" href="projects/pium.html?v=20261007-5">자세히 보기</a>
                     </div>
                   </div>
                   <p>
-                    피부 진단 서비스입니다. Toss Mini App과 웹 서비스를 운영했고, Docker,
-                    GitHub Actions, Nginx 기반 배포 흐름을 다뤘습니다.
+                    설문과 얼굴 사진을 바탕으로 피부 상태를 분석하고 제품과 관리 방법을 추천하는
+                    서비스입니다. SWYP 팀 프로젝트에서 백엔드를 담당했으며, 이후 구조를 전반적으로
+                    재구성해 웹과 Toss Mini App으로 운영했습니다.
                   </p>
                   <div class="tags">
                     <span class="tag">Spring Boot</span>
@@ -2807,12 +2813,14 @@
       const modalShell = projectModal.querySelector(".project-modal-shell");
       const modalTitle = projectModal.querySelector(".project-modal-heading strong");
       const modalLoading = projectModal.querySelector(".project-frame-loading");
+      const projectContentVersion = "20261007-5";
       let activeProjectTrigger = null;
 
       function openProjectModal(project) {
         const projectTitle = project.querySelector("h3").textContent;
+        const separator = project.dataset.projectUrl.includes("?") ? "&" : "?";
 
-        projectFrame.src = project.dataset.projectUrl;
+        projectFrame.src = `${project.dataset.projectUrl}${separator}v=${projectContentVersion}`;
         projectFrame.title = `${projectTitle} 프로젝트 상세`;
         modalTitle.textContent = projectTitle;
         modalShell.classList.remove("is-ready");
